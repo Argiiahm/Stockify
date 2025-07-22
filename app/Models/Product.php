@@ -12,11 +12,11 @@ class Product extends Model
         protected $guarded = [];
 
         public function suppliers() {
-            return $this->belongsTo(Suppliers::class);
+            return $this->belongsTo(Suppliers::class, 'suplier_id');
         }
 
         public function categories() {
-            return $this->belongsTo(Categories::class);
+            return $this->belongsTo(Categories::class, 'category_id');
         }
 
 }
