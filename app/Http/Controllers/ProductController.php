@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categories;
+use App\Models\User;
 use App\Models\Product;
 use App\Models\Suppliers;
+use App\Models\Categories;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
    public function index()
    {
       return view('product', [
+         "Users"       =>   User::all(),
          "Product"     =>   Product::all(),
          "Categories"  =>   Categories::all(),
          "Suppliers"   =>   Suppliers::all()
@@ -48,7 +51,11 @@ class ProductController extends Controller
          //dd($validasiData);  
 
       if (Product::create($validasiData)) {
-         return redirect('/product');
+         if(Auth::user()->role == "Admin") {
+            return redirect('/admin/produk');
+         }elseif(Auth::user()->role == "Manajer gudang") {
+            return redirect('/management_gudang');
+         }
       } else {
          return back();
       }

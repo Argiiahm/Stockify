@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('sku');
             $table->text('description');
-            $table->decimal('purchase_price');
-            $table->decimal('selling_price');
+            $table->decimal('purchase_price',20,2);
+            $table->decimal('selling_price',20, 2);
             $table->string('image');
             $table->integer('minimum_stock');
             $table->foreignId('category_id');

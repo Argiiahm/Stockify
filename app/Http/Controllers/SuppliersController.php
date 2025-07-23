@@ -17,7 +17,7 @@ class SuppliersController extends Controller
         ]);
 
         if(Suppliers::create($vData)) {
-            return redirect('/product');    
+            return redirect('/admin/supplier');    
         }else {
             return back();
         }
@@ -26,7 +26,7 @@ class SuppliersController extends Controller
 
     public function destroy(Suppliers $suppliers) {
         $suppliers->delete();
-        return redirect('/product');
+        return redirect('/admin/supplier');
     }
 
     public function edit(Suppliers $suppliers) {
@@ -44,7 +44,7 @@ class SuppliersController extends Controller
         ]);
 
         if($suppliers->update($vData)) {
-            return redirect('/product');    
+            return redirect('/admin/supplier');    
         }else {
             return back();
         }

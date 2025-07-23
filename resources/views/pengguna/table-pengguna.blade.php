@@ -1,33 +1,43 @@
  <div class="relative overflow-x-auto mt-5">
-     <h1 class="text-2xl mb-3">Categories</h1>
+     <h1 class="text-2xl mb-3">Data Users</h1>
      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
              <tr>
                  <th scope="col" class="px-6 py-3">
                      Name
                  </th>
-
                  <th scope="col" class="px-6 py-3">
-                     Description
+                     email
                  </th>
-                 <th scope="col" class="px-10 py-3">
+                 <th scope="col" class="px-6 py-3">
+                     role
+                 </th>
+                 <th scope="col" class="px-6 py-3">
                      Action
                  </th>
              </tr>
          </thead>
          <tbody>
-             @foreach ($Categories as $c)
+             @foreach ($Users as $s)
                  <tr>
-                     <td class="py-2">{{ $c->name }}</td>
-                     <td>{{ $c->description }}</td>
-                     <td class="flex items-center gap-2 py-2">
-                         <form action="/category/{{ $c->id }}" method="POST">
+                     <td class="px-6 py-4">
+                         {{ $s->name }}
+                     </td>
+                     <td class="px-6 py-4">
+                         {{ Str::mask($s->email, '*', 2, 5) }}
+                     </td>
+                     <td class="px-6 py-4">
+                         {{ $s->role }}
+                     </td>
+                     <td class="px-6 py-4 flex gap-2">
+                         <form action="/pengguna/delete/{{ $s->id }}" method="POST">
                              @csrf
                              @method('DELETE')
                              <button onclick="return confirm('Apakah Anda Yakin?')" type="submit"
                                  class="hover:underline bg-red-500 hover:bg-orange-150 text-white font-bold py-1 px-3 rounded">Delete</button>
                          </form>
-                            <a class="bg-green-500 hover:bg-orange-600 text-white font-bold py-1 px-6 rounded" href="/category/edit/{{ $c->id }}">Edit</a>
+                         <a href="/pengguna/edit/{{ $s->id }}"
+                             class="hover:underline bg-green-500 hover:bg-orange-150 text-white font-bold py-1 px-6 rounded">Edit</a>
                      </td>
                  </tr>
              @endforeach

@@ -17,7 +17,7 @@ class CategoriesController extends Controller
 
         // dd($vData);
         if(Categories::create($vData)){
-            return redirect('/product');
+            return redirect('/admin/produk');
         }else{
             return back();
         }
@@ -32,7 +32,7 @@ class CategoriesController extends Controller
     public function destroy(Categories $category){
         // dd($category);
         $category->delete();
-        return redirect('/product');
+        return redirect('/admin/produk');
     }
 
     public function update(Request $request, Categories $category){
@@ -41,7 +41,7 @@ class CategoriesController extends Controller
             'description' => 'required',
         ]);
         if($category->update($vData)){
-            return redirect('/product');
+            return redirect('/admin/produk');
         }else{
             return back();
         }

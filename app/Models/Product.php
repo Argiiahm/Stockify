@@ -19,4 +19,12 @@ class Product extends Model
             return $this->belongsTo(Categories::class, 'category_id');
         }
 
+        public function attributes() {
+            return $this->hasMany(Attribute::class);
+        }
+
+        public function stock() {
+            return $this->hasMany(Stock::class, 'product_id');
+        }
+
 }

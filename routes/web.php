@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AttributesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ManagementGudangContoller;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SuppliersController;
@@ -22,25 +25,69 @@ Route::get('/', function () {
     return view('app');
 })->middleware('auth');
 
-Route::get('/login',[AuthController::class, 'login'])->name('login');
-Route::post('/masuk',[AuthController::class, 'masuk']);
 
-Route::get('/register',[AuthController::class, 'register']);
-Route::post('/daftar',[AuthController::class, 'daftar']);
+//User Login
+Route::get('/login',[AuthController::class, 'login'])->name('login')->middleware('guest');
+Route::post('/masuk',[AuthController::class, 'masuk'])->middleware('guest');
+Route::delete('/logout',[AuthController::class, 'logout'])->middleware('auth');
 
-Route::get('/product',[ProductController::class, 'index'])->middleware('auth');
-Route::post('/product/store',[ProductController::class, 'store'])->middleware('auth');
 
-Route::get('/category',[CategoriesController::class, 'index'])->middleware('auth');
-Route::get('/category/edit/{category:id}',[CategoriesController::class, 'edit'])->middleware('auth');
-Route::post('/category/store',[CategoriesController::class, 'store'])->middleware('auth');
-Route::delete('/category/{category:id}',[CategoriesController::class, 'destroy'])->middleware('auth');
-Route::put('/category/update/{category:id}',[CategoriesController::class, 'update'])->middleware('auth');
+//Pengguna
+Route::post('/pengguna',[AuthController::class, 'store'])->middleware('admin');
+Route::get('/pengguna/edit/{pengguna:id}',[AuthController::class, 'edit'])->middleware('admin');
+Route::put('/pengguna/update/{pengguna:id}',[AuthController::class, 'update'])->middleware('admin');
+Route::delete('/pengguna/delete/{pengguna:id}',[AuthController::class, 'delete'])->middleware('admin');
+
+
+
+//Halaman Admin
+Route::get('/admin/dashboard',[AdminController::class, 'index'])->middleware('admin');
+Route::get('/admin/produk',[AdminController::class, 'product'])->middleware('admin');
+Route::get('/admin/stock',[AdminController::class, 'stock'])->middleware('admin');
+Route::get('/admin/supplier',[AdminController::class, 'supplier'])->middleware('admin');
+Route::get('/admin/pengguna',[AdminController::class, 'pengguna'])->middleware('admin');
+Route::get('/admin/laporan',[AdminController::class, 'laporan'])->middleware('admin');
+Route::get('/admin/pengaturan',[AdminController::class, 'pengaturan'])->middleware('admin');
+
+
+
+//Product CRUD - Admin Akses
+Route::post('/product/store',[ProductController::class, 'store'])->middleware('admin_gudang');
+
+
+
+//Categories CRUD - Admin Akses
+Route::get('/category',[CategoriesController::class, 'index'])->middleware('admin');
+Route::get('/category/edit/{category:id}',[CategoriesController::class, 'edit'])->middleware('admin');
+Route::post('/category/store',[CategoriesController::class, 'store'])->middleware('admin');
+Route::delete('/category/{category:id}',[CategoriesController::class, 'destroy'])->middleware('admin');
+Route::put('/category/update/{category:id}',[CategoriesController::class, 'update'])->middleware('admin');
+
+
+
+//atribut CRUD - Admin Akses
+Route::post('/attribute/store',[AttributesController::class, 'store'])->middleware('admin');
+Route::delete('/attribute/delete/{attribute:id}',[AttributesController::class, 'destroy'])->middleware('admin');
+Route::get('/attribute/edit/{attribute:id}',[AttributesController::class, 'edit'])->middleware('admin');
+Route::put('/attribute/update/{attribute:id}',[AttributesController::class, 'update'])->middleware('admin');
+
+
+//Management Gudang
+Route::get('/management_gudang',[ManagementGudangContoller::class, 'index'])->middleware('gudang');
+
+
 
 Route::post('/suppliers',[SuppliersController::class, 'store']);
 Route::delete('/suppliers/{suppliers:id}',[SuppliersController::class, 'destroy']);
 Route::get('/suppliers/edit/{suppliers:id}',[SuppliersController::class, 'edit']);
-Route::put('/suppliers/update/{suppliers:id}',[SuppliersController::class, 'update']);
+Route::put('/suppliers/update/{suppliers:id}',[SuppliersController::class, 'update']);  
 
 
-Route::get('/stock',[StockController::class, 'index']);
+
+
+
+
+
+
+
+

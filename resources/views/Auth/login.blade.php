@@ -49,7 +49,6 @@
                                     </div>
                                     <div class="md:col-span-5 text-right">
                                         <div class="flex items-center justify-between">
-                                            <p>Belum Punya Akun? <a class="text-blue-500 font-bold" href="/register">Daftar</a> Disini!</p>
                                             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Masuk</button>
                                         </div>
                                     </div>
