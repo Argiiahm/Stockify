@@ -72,15 +72,17 @@ Route::get('/attribute/edit/{attribute:id}',[AttributesController::class, 'edit'
 Route::put('/attribute/update/{attribute:id}',[AttributesController::class, 'update'])->middleware('admin');
 
 
+//Suppliers CRUD - Admin Akses
+Route::post('/suppliers',[SuppliersController::class, 'store'])->middleware('admin');
+Route::delete('/suppliers/{suppliers:id}',[SuppliersController::class, 'destroy'])->middleware('admin');
+Route::get('/suppliers/edit/{suppliers:id}',[SuppliersController::class, 'edit'])->middleware('admin');
+Route::put('/suppliers/update/{suppliers:id}',[SuppliersController::class, 'update'])->middleware('admin');  
+
+
 //Management Gudang
 Route::get('/management_gudang',[ManagementGudangContoller::class, 'index'])->middleware('gudang');
 
 
-
-Route::post('/suppliers',[SuppliersController::class, 'store']);
-Route::delete('/suppliers/{suppliers:id}',[SuppliersController::class, 'destroy']);
-Route::get('/suppliers/edit/{suppliers:id}',[SuppliersController::class, 'edit']);
-Route::put('/suppliers/update/{suppliers:id}',[SuppliersController::class, 'update']);  
 
 
 
