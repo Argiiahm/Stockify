@@ -33,10 +33,16 @@ class ManagementGudangContoller extends Controller
 
     public function stock()
     {
+        $allProduct = Product::all();
+        $today = now()->toDateString();
+        $Data = Product::whereDate('created_at', $today)->get();
         return view('ManageGudang.stock', [
             "Product"  =>     Product::paginate(3),
             "Suppliers"  =>   Suppliers::all(),
             "Categories"  =>  Categories::all(),
+            "Products"     => $allProduct,
+            "DataToday"     =>   $Data
+
         ]);
     }
 }

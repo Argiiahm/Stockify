@@ -15,7 +15,7 @@ class AdminController extends Controller
     public function index() {
         $count = Product::count();
         return view('Admin.dashboard.dashboard-admin',[
-            "count"   =>   $count,
+            "count"   =>   $count, 
             "Product"  =>     Product::paginate(4),
         ]);
     }

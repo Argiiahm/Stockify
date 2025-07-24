@@ -23,7 +23,7 @@
                      Image
                  </th>
                  <th scope="col" class="px-6 py-3">
-                     IMinimum Stok
+                     Minimum Stok
                  </th>
              </tr>
          </thead>

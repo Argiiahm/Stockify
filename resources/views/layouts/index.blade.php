@@ -132,23 +132,23 @@
                         <ul id="dropdown-m" class="hidden py-2 space-y-2">
                             <li>
                                 <a href="/management_gudang/dashboard"
-                                    class="flex {{ Request()->is('management/dashboard') ? 'bg-gray-700' : '' }} items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Dashboard</a>
+                                    class="flex {{ Request()->is('management_gudang/dashboard') ? 'bg-gray-700' : '' }} items-center w-full p-2 text-gray-400 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Dashboard</a>
                             </li>
                             <li>
                                 <a href="/management_gudang/produk"
-                                    class="flex {{ Request()->is('management/produk') ? 'bg-gray-700' : '' }} items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Produk</a>
+                                    class="flex {{ Request()->is('management_gudang/produk') ? 'bg-gray-700' : '' }} items-center w-full p-2 text-gray-400 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Produk</a>
                             </li>
                             <li>
                                 <a href="/management_gudang/stock"
-                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Stok</a>
+                                    class="flex {{ Request()->is('management_gudang/stock') ? 'bg-gray-700' : '' }} items-center w-full p-2 text-gray-400 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Stok</a>
                             </li>
                             <li>
                                 <a href="/management_gudang/supplier"
-                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Supplier</a>
+                                    class="flex {{ Request()->is('management_gudang/supplier') ? 'bg-gray-700' : '' }} items-center w-full p-2 text-gray-400 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Supplier</a>
                             </li>
                             <li>
                                 <a href="/management_gudang/laporan"
-                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Laporan</a>
+                                    class="flex items-center w-full {{ Request()->is('management_gudang/laporan') ? 'bg-gray-700' : '' }} p-2 text-gray-400 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Laporan</a>
                             </li>
                         </ul>
                     </li>
