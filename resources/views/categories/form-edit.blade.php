@@ -13,7 +13,7 @@
 
 <body>
     <div class="max-w-screen-lg mx-auto mt-40 p-6 bg-gray-100 flex items-center justify-center">
-        <div class="container m ax-w-screen-lg mx-auto">
+        <div class="container m ax-w-screen-lg mx-auto"><span class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300">Default</span>
             <div>
                 <h2 class="font-semibold text-xl text-gray-600">Edit Categories</h2>
                 <p class="text-gray-500 mb-6">Stockify</p>

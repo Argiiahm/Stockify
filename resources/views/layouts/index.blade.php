@@ -46,7 +46,7 @@
                             <path
                                 d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
                         </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Dashboard</span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Stockify</span>
                         <span
                             class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Home</span>
                     </a>
@@ -176,8 +176,7 @@
                         <span class="flex-1 ms-3 whitespace-nowrap">Staff Gudang</span>
                     </a>
                 </li>
-
-                @if (Auth::check())
+                {{-- @if (Auth::check())
                     <li class="">
                         <form action="/logout" method="POST">
                             @csrf
@@ -209,13 +208,63 @@
                             <span class="flex-1 ms-3 whitespace-nowrap">Masuk</span>
                         </a>
                     </li>
-                @endif
+                @endif --}}
+
             </ul>
         </div>
     </aside>
-
+    <div class="p-4 sm:ml-64">
+        <nav class="border-gray-200 rounded-md shadow-md bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <span
+                    class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white flex items-center gap-3">Welcome!,
+                    @if (Auth::user()->role == 'Admin')
+                        Stockify <span
+                            class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300">{{ Auth::user()->role }}</span>
+                    @elseif (Auth::user()->role == 'Manajer gudang')
+                        <span
+                            class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-green-900 dark:text-green-300">{{ Auth::user()->role }}</span>
+                    @elseif (Auth::user()->role == 'Staff gudang')
+                        <span
+                            class="bg-yellow-100 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-yellow-900 dark:text-yellow-300">{{ Auth::user()->role }}</span>
+                    @endif
+                </span>
+                <div class="flex items-center gap-5">
+                    <p class="font-semibold whitespace-nowrap dark:text-white">{{ Auth::user()->name }}</p>
+                    @if (Auth::check())
+                        <form action="/logout" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button
+                                class="flex items-center p-2 text-gray-900 rounded-lg bg-green-600 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                <svg class="shrink-0 w-5 h-5 text-white transition duration-75 dark:text-white group-hover:text-gray-900 dark:group-hover:text-white"
+                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 18 16">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3" />
+                                </svg>
+                                <span class="flex-1 ms-3 whitespace-nowrap">Keluar</span>
+                            </button>
+                        </form>
+                    @else
+                        <a href="/login"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 18 16">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3" />
+                            </svg>
+                            <span class="flex-1 ms-3 whitespace-nowrap">Masuk</span>
+                        </a>
+                    @endif
+                </div>
+            </div>
+        </nav>
+    </div>
     @yield('content')
-
 </body>
 
 </html>
