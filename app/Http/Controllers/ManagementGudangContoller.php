@@ -5,15 +5,38 @@ namespace App\Http\Controllers;
 use App\Models\Categories;
 use App\Models\Product;
 use App\Models\Suppliers;
-use Illuminate\Http\Request;
 
 class ManagementGudangContoller extends Controller
 {
-    public function index() {
-        return view('ManageGudang.index',[
-            "Product"  =>     Product::all(),
+    public function dashboard()
+    {
+        $today = now()->toDateString();
+        $Data = Product::whereDate('created_at', $today)->get();
+        return view('ManageGudang.index', [
+            "DataToday"     =>   $Data
+        ]);
+    }
+
+    public function produk()
+    {
+        return view('ManageGudang.produk');
+    }
+
+    public function supplier()
+    {
+        return view('ManageGudang.supplier');
+    }
+    public function laporan()
+    {
+        return view('ManageGudang.laporan');
+    }
+
+    public function stock()
+    {
+        return view('ManageGudang.stock', [
+            "Product"  =>     Product::paginate(3),
             "Suppliers"  =>   Suppliers::all(),
-            "Categories"  =>  Categories::all()
+            "Categories"  =>  Categories::all(),
         ]);
     }
 }

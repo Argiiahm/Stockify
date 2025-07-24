@@ -60,6 +60,7 @@
         @include('product.table-product')
 
 
+
         {{-- Tabel Categories dan attributes --}}
        @include('atribut.table-att')
 

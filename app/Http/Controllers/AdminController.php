@@ -15,14 +15,15 @@ class AdminController extends Controller
     public function index() {
         $count = Product::count();
         return view('Admin.dashboard.dashboard-admin',[
-            "count"   =>   $count
+            "count"   =>   $count,
+            "Product"  =>     Product::paginate(4),
         ]);
     }
 
     public function product() {
         $count = Product::count();
         return view('Admin.admin-product',[
-            "Product"  =>     Product::all(),
+            "Product"  =>     Product::paginate(4),
             "Suppliers"  =>   Suppliers::all(),
             "Categories"  =>  Categories::all(),
             "Attribute"   =>   Attribute::all(),

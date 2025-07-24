@@ -9,4 +9,66 @@
                 <p class="mb-3 font-normal text-4xl text-gray-700 dark:text-gray-400">{{ $count }}</p>
             </div>
         </div>
+
+        <div>
+            @include('product.table-product')
+            <section>
+                <canvas id="stockchart"></canvas>
+            </section>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            const ctx = document.getElementById('stockchart');
+
+            const stockchart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        @foreach ($Product as $key => $p)
+                            '{{ $p->name }}'
+                            @if (!$loop->last),
+                            @endif
+                        @endforeach
+                    ],
+                    datasets: [{
+                            label: 'Stock Masuk',
+                            data: [
+                                @foreach ($Product as $p)
+                                    {{ $p->minimum_stock }},
+                                @endforeach
+                            ],
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Stock Keluar',
+                            data: [
+                                @foreach ($Product as $p)
+                                    {{ $p->minimum_stock }},
+                                @endforeach
+                            ],
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            ticks: {
+                                maxRotation: 45,
+                                minRotation: 0
+                            }
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
     @endsection

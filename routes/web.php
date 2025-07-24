@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ManagementGudangContoller;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SuppliersController;
 use Illuminate\Support\Facades\Route;
@@ -80,8 +81,14 @@ Route::put('/suppliers/update/{suppliers:id}',[SuppliersController::class, 'upda
 
 
 //Management Gudang
-Route::get('/management_gudang',[ManagementGudangContoller::class, 'index'])->middleware('gudang');
+Route::get('/management_gudang/dashboard',[ManagementGudangContoller::class, 'dashboard'])->middleware('admin_gudang');
+Route::get('/management_gudang/produk',[ManagementGudangContoller::class, 'produk'])->middleware('admin_gudang');
+Route::get('/management_gudang/stock',[ManagementGudangContoller::class, 'stock'])->middleware('admin_gudang');
+Route::get('/management_gudang/supplier',[ManagementGudangContoller::class, 'supplier'])->middleware('admin_gudang');
+Route::get('/management_gudang/laporan',[ManagementGudangContoller::class, 'laporan'])->middleware('admin_gudang');
 
+//Staff Gudang
+Route::get('/staff_gudang',[StaffController::class, 'index'])->middleware('admin_all');  
 
 
 
