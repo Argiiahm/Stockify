@@ -56,7 +56,7 @@ class AuthController extends Controller
         $vd = $request->validate([
             "name"      =>    "required",
             "email"     =>    "required|email",
-            "role"      =>    "in:Admin,Staff gudang, Manajer gudang"
+            "role"      =>    "in:Admin,Staff gudang,Manajer gudang"
         ]);
         
         if($pengguna->update($vd)) {

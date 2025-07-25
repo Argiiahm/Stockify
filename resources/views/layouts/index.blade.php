@@ -35,7 +35,7 @@
             <ul class="space-y-2 font-medium">
                 <li class="flex items-center">
                     <img class="w-24" src="{{ asset('image/logo.png') }}" alt="">
-                    <span class=" text-gray-500">STOKIFY</span>
+                    <span class=" text-gray-500">Stokify</span>
                 </li>
                 <li>
                     <a href="/"
@@ -46,7 +46,8 @@
                             <path
                                 d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
                         </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Stockify</span>
+
+                        <span class="flex-1 ms-3 whitespace-nowrap">Stokify</span>
                         <span
                             class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Home</span>
                     </a>
@@ -68,31 +69,31 @@
                         <ul id="dropdown-example" class="hidden py-2 space-y-2">
                             <li>
                                 <a href="/admin/dashboard"
-                                    class="flex {{ Request()->is('admin/dashboard') ? 'bg-gray-700' : '' }} items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Dashboard</a>
+                                    class="flex {{ Request()->is('admin/dashboard') ? 'bg-gray-700' : '' }} items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Dashboard</a>
                             </li>
                             <li>
                                 <a href="/admin/produk"
-                                    class="flex {{ Request()->is('admin/produk') ? 'bg-gray-700' : '' }} items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Produk</a>
+                                    class="flex {{ Request()->is('admin/produk') ? 'bg-gray-700' : '' }} items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Produk</a>
                             </li>
                             <li>
                                 <a href="/admin/stock"
-                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Stok</a>
+                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Stok</a>
                             </li>
                             <li>
                                 <a href="/admin/supplier"
-                                    class="flex items-center {{ Request()->is('admin/supplier') ? 'bg-gray-700' : '' }} w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Supplier</a>
+                                    class="flex items-center {{ Request()->is('admin/supplier') ? 'bg-gray-700' : '' }} w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Supplier</a>
                             </li>
                             <li>
                                 <a href="/admin/pengguna"
-                                    class="flex items-center {{ Request()->is('admin/pengguna') ? 'bg-gray-700' : '' }} w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Pengguna</a>
+                                    class="flex items-center {{ Request()->is('admin/pengguna') ? 'bg-gray-700' : '' }} w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Pengguna</a>
                             </li>
                             <li>
                                 <a href="/admin/laporan"
-                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Laporan</a>
+                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Laporan</a>
                             </li>
                             <li>
                                 <a href="/admin/pengaturan"
-                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Pengaturan</a>
+                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Pengaturan</a>
                             </li>
                         </ul>
                     </li>
@@ -169,13 +170,31 @@
                 @endif
                 {{-- End Manajer Route --}}
 
+                {{-- Staff Gudang Route --}}
                 <li>
-                    <a href="/staff_gudang"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <i class="ph ph-asclepius"></i>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Staff Gudang</span>
-                    </a>
+                    <button type="button"
+                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                        aria-controls="dropdown-staff" data-collapse-toggle="dropdown-staff">
+                        <i class="ph ph-identification-card"></i>
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Stuff Gudang</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="m1 1 4 4 4-4" />
+                        </svg>
+                    </button>
+                    <ul id="dropdown-staff" class="hidden py-2 space-y-2">
+                        <li>
+                            <a href="/staffgudang/dashboard"
+                                class="flex {{ Request()->is('staffgudang/dashboard') ? 'bg-gray-700' : '' }} items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 text-gray-400">Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="/staffgudang/stock"
+                                class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 text-gray-400">Stok</a>
+                        </li>
+                    </ul>
                 </li>
+                {{-- End Staff Gudang Route --}}
                 {{-- @if (Auth::check())
                     <li class="">
                         <form action="/logout" method="POST">
@@ -217,7 +236,7 @@
         <nav class="border-gray-200 rounded-md shadow-md bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <span
-                    class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white flex items-center gap-3">Welcome!,
+                    class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white flex items-center gap-3">Welcome!
                     @if (Auth::user()->role == 'Admin')
                         Stockify <span
                             class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300">{{ Auth::user()->role }}</span>
@@ -226,7 +245,7 @@
                             class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-green-900 dark:text-green-300">{{ Auth::user()->role }}</span>
                     @elseif (Auth::user()->role == 'Staff gudang')
                         <span
-                            class="bg-yellow-100 text-yellow-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-yellow-900 dark:text-yellow-300">{{ Auth::user()->role }}</span>
+                            class="bg-purple-100 text-purple-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-purple-900 dark:text-purple-300">{{ Auth::user()->role }}</span>
                     @endif
                 </span>
                 <div class="flex items-center gap-5">
@@ -236,7 +255,7 @@
                             @csrf
                             @method('DELETE')
                             <button
-                                class="flex items-center p-2 text-gray-900 rounded-lg bg-green-600 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                class="flex items-center p-2 text-gray-900 rounded-lg bg-green-600 dark:text-white">
                                 <svg class="shrink-0 w-5 h-5 text-white transition duration-75 dark:text-white group-hover:text-gray-900 dark:group-hover:text-white"
                                     aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 18 16">
@@ -244,12 +263,12 @@
                                         stroke-width="2"
                                         d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3" />
                                 </svg>
-                                <span class="flex-1 ms-3 whitespace-nowrap">Keluar</span>
+                                <span
+                                    class="flex-1 ms-3 whitespace-nowrap dark:text-white text-gray-200 font-bold">Keluar</span>
                             </button>
                         </form>
                     @else
-                        <a href="/login"
-                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <a href="/login" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white">
                             <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                                 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 18 16">
@@ -265,6 +284,9 @@
         </nav>
     </div>
     @yield('content')
+
+    @include('sweetalert::alert')
+
 </body>
 
 </html>

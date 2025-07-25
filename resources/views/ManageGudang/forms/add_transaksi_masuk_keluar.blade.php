@@ -22,9 +22,9 @@
 
 
             <div class="p-4 md:p-5">
-                <form class="space-y-4" action="/category/store" method="POST">
+                <form class="space-y-4" action="/transaksi/stock" method="POST">
                     @csrf
-                    <select id="suppliers" name="supplier_id"
+                    <select id="product_id" name="product_id"
                         class="bg-gray-50 border border-gray-300 text-gray-900 mb-5 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option value="" selected disabled>Product</option>
                         @foreach ($Products as $p)
@@ -50,10 +50,24 @@
                         required>
                         <option value="" selected disabled>Status</option>
                         <option value="pending">Pending</option>
-                        <option value="diterima">Diterima</option>
+                        {{-- <option value="diterima">Diterima</option>
                         <option value="ditolak">Di Tolak</option>
-                        <option value="dikeluarkan">Di Keluarkan</option>
+                        <option value="dikeluarkan">Di Keluarkan</option> --}}
                     </select>
+                    <div>
+                        <label for="Date"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
+                        <input type="date" name="date" id="Date"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            required />
+                    </div>
+                    <div>
+                        <label for="Note"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Note</label>
+                        <input type="text" name="note" id="Note"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Note"/>
+                    </div>
+             
 
                     <div class="flex justify-between">
                         <div class="flex items-start">

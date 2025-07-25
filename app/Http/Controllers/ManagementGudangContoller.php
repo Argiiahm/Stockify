@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categories;
+use App\Models\Stock;
 use App\Models\Product;
 use App\Models\Suppliers;
+use App\Models\Categories;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class ManagementGudangContoller extends Controller
 {
@@ -19,12 +24,14 @@ class ManagementGudangContoller extends Controller
 
     public function produk()
     {
-        return view('ManageGudang.produk');
+        return view('ManageGudang.produk',);
     }
 
     public function supplier()
     {
-        return view('ManageGudang.supplier');
+        return view('ManageGudang.supplier', [
+            "Suppliers"   => Suppliers::all()
+        ]);
     }
     public function laporan()
     {
@@ -42,7 +49,41 @@ class ManagementGudangContoller extends Controller
             "Categories"  =>  Categories::all(),
             "Products"     => $allProduct,
             "DataToday"     =>   $Data
-
         ]);
+    }
+
+    public function tfStock(Request $request)
+    {
+        $validasiData = $request->validate([
+            "product_id" => "required|exists:products,id",
+            "type" => "required|in:masuk,keluar",
+            "quantity" => "required|integer|min:1",
+            "date" => "required|date",
+            "status" => "required|in:pending,diterima,ditolak,dikeluarkan",
+            "note"   =>  "nullable"
+        ]);
+
+        $validasiData['user_id'] = Auth::id();
+        $product = Product::findOrFail($validasiData["product_id"]);
+
+        // if ($validasiData['type'] == 'keluar' && $product->minimum_stock < $validasiData['quantity']) {
+        //     return back()->with('error', 'Stok tidak mencukupi!');
+        // }
+
+        // if ($validasiData['status'] == 'diterima' && $validasiData['type'] == 'masuk') {
+        //     $product->minimum_stock += $validasiData['quantity'];
+        // } elseif ($validasiData['status'] == 'dikeluarkan' && $validasiData['type'] == 'keluar') {
+        //     $product->minimum_stock -= $validasiData['quantity'];
+        // }
+
+        // $product->save();
+
+        if ($validasiData['quantity'] < $product->minimum_stock) {
+            alert()->warning('Stok Terlalu Kecil!', 'Minimal Stok: ' . $product->minimum_stock);
+            return back();
+        }
+
+        Stock::create($validasiData);
+        return back();
     }
 }

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->enum('type', ['masuk', 'keluar']);
             $table->integer('quantity');
             $table->date('date');
-            $table->enum('status', ['pending', 'diterima', 'ditolak','dikeluarkan']);
-            $table->text('note');
+            $table->enum('status', ['pending', 'diterima', 'ditolak','dikeluarkan'])->nullable();
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

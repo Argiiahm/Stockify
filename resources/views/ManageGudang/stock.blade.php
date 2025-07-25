@@ -49,7 +49,7 @@
 
 
         @include('product.form-add_product')
-        @include('ManageGudang.forms.add_transaksi_masuk')
+        @include('ManageGudang.forms.add_transaksi_masuk_keluar')
         @include('ManageGudang.modal-barang_masuk')
         @include('ManageGudang.modal-barang_keluar')
         {{-- @include('ManageGudang.forms.add_transaksi_keluar') --}}

@@ -7,8 +7,8 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ManagementGudangContoller;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StaffController;
-use App\Http\Controllers\StockController;
 use App\Http\Controllers\SuppliersController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +23,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () { 
-    return view('app');
+    return view('app',[
+        "Products"  =>    Product::all()
+    ]);
 })->middleware('auth');
 
 
@@ -87,10 +89,18 @@ Route::get('/management_gudang/stock',[ManagementGudangContoller::class, 'stock'
 Route::get('/management_gudang/supplier',[ManagementGudangContoller::class, 'supplier'])->middleware('admin_gudang');
 Route::get('/management_gudang/laporan',[ManagementGudangContoller::class, 'laporan'])->middleware('admin_gudang');
 
+//Management Gudang -- Transaksi Stok Masuk Dan Keluar
+Route::post('/transaksi/stock',[ManagementGudangContoller::class, 'tfStock'])->middleware('admin_gudang');
+Route::get('/transaksi/stock/edit/{stock:id}',[ManagementGudangContoller::class, 'editStock'])->middleware('admin_gudang');
+Route::put('/transaksi/stock/update/{stock:id}',[ManagementGudangContoller::class, 'updateStock'])->middleware('admin_gudang');
+Route::delete('/transaksi/stock/delete/{stock:id}',[ManagementGudangContoller::class, 'deleteStock'])->middleware('admin_gudang');
+
 //Staff Gudang
-Route::get('/staff_gudang',[StaffController::class, 'index'])->middleware('admin_all');  
+Route::get('/staffgudang/dashboard',[StaffController::class, 'dashboard'])->middleware('admin_all');
+Route::get('/staffgudang/stock',[StaffController::class, 'stock'])->middleware('admin_all');
 
-
+//stock  CRUD
+Route::put('/stock/ubahstatus/{stock:id}',[StaffController::class, 'ubahStatus'])->middleware('admin_all');
 
 
 

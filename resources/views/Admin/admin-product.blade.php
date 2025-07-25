@@ -62,7 +62,7 @@
 
 
         {{-- Tabel Categories dan attributes --}}
-       @include('atribut.table-att')
+    @include('atribut.table-att')
 
     </div>
 @endsection
