@@ -8,79 +8,85 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function login() {
+    public function login()
+    {
         return view('Auth.login');
     }
 
-    public function masuk(Request $request) {
+    public function masuk(Request $request)
+    {
         // dd($request->all());
         $vd = $request->validate([
-           "email"    =>    "required|email",
-           "password" =>    "required"
+            "email"    =>    "required|email",
+            "password" =>    "required"
         ]);
 
         // dd(Auth::attempt($vd));
 
-            Auth::attempt($vd);
-            return redirect('/');
+        Auth::attempt($vd);
+        return redirect('/');
     }
 
-    
-    public function store(Request $request) {
+
+    public function store(Request $request)
+    {
         $vd = $request->validate([
             "name"      =>    "required",
             "email"     =>    "required|email",
             "password"  =>    "required",
             "role"      =>    "in:Admin,Staff gudang,Manajer gudang"
         ]);
-        
+
         $vd['password']  = bcrypt($request->password);
 
         // dd($vd);
-        
-        if(User::create($vd)) {
+
+        if (User::create($vd)) {
+            alert()->success('Berhasil! Menambahkan Pengguna');
             return redirect('/admin/pengguna');
-        }else {
+        } else {
             return back();
         }
     }
-    
-    public function edit(User $pengguna) {
+
+    public function edit(User $pengguna)
+    {
         return view('pengguna.form-edit_pengguna', [
             'user' => $pengguna
         ]);
     }
 
-    
-    public function update(Request $request, User $pengguna) {
+
+    public function update(Request $request, User $pengguna)
+    {
         $vd = $request->validate([
             "name"      =>    "required",
             "email"     =>    "required|email",
             "role"      =>    "in:Admin,Staff gudang,Manajer gudang"
         ]);
-        
-        if($pengguna->update($vd)) {
+
+        if ($pengguna->update($vd)) {
+            alert()->success('Berhasil! Mengubah Pengguna');
             return redirect('/admin/pengguna');
-        }else {
+        } else {
             return back();
         }
     }
 
-    public function delete(User $pengguna) {
-        if($pengguna->delete()) {
+    public function delete(User $pengguna)
+    {
+        if ($pengguna->delete()) {
+            alert()->success('Berhasil! Menghapus Pengguna');
             return redirect('/admin/pengguna');
-        }else {
+        } else {
             return back();
         }
     }
-    
-    public function logout(Request $request){
+
+    public function logout(Request $request)
+    {
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
-        
     }
-
-    
-
 }

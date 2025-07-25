@@ -28,6 +28,6 @@
 
 
 
-    @include('ManageGudang.modal-barang_masuk')
-    @include('ManageGudang.modal-barang_keluar')
+    {{-- @include('ManageGudang.modal-barang_masuk')
+    @include('ManageGudang.modal-barang_keluar') --}}
 @endsection

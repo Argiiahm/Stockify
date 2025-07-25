@@ -4,42 +4,72 @@ namespace App\Http\Controllers;
 
 use App\Models\Stock;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class StaffController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('staffGudang.index');
     }
-    public function dashboard() {
+    public function dashboard()
+    {
         return view('staffGudang.dashboard');
     }
 
-    public function stock() {
-        return view('staffGudang.stock',[
+    public function stock()
+    {
+        return view('staffGudang.stock', [
             'stock' => stock::all()
         ]);
     }
 
     public function ubahStatus(Request $request, $id)
-{
-    $barang = stock::findOrFail($id);
+    {
+        $barang = stock::findOrFail($id);
+        $statusBaru = $request->input('status');
+        $barang->status = $statusBaru;
+        $barang->save();
 
-    // $allowedStatus = ['diterima', 'ditolak'];
+        return back();
+        alert()->success('Berhasil!', 'Status diubah menjadi ' . $statusBaru);
+    }
+    //hapus stock
+    public function hapusstock(Stock $stock)
+    {
+        $stock->delete();
+        alert()->success('SuccessAlert', 'Barang Berhasil Ditolak!');
+        return back();
+    }
 
-    $statusBaru = $request->input('status');
 
-    // if (!in_array($statusBaru, $allowedStatus)) {
-    //     return redirect()->back()->with('error', 'Status tidak valid.');
-    // }
+    // Stock return
+    public function returnstock(Request $request, $id)
+    {
+        $barang = stock::findOrFail($id);
 
-    // if ($barang->status !== 'pending') {
-    //     return redirect()->back()->with('info', 'Barang sudah diproses.');
-    // }
+        $typebaru = $request->input('type');
 
-    $barang->status = $statusBaru;
-    $barang->save();
 
-    return redirect()->back()->with('success', "Status diubah menjadi " . $statusBaru);
-}
+        $barang->type = $typebaru;
+        // $barang->status = $typebaru;
+        $barang->save();
 
+        alert()->success('Berhasil!');
+        return back();
+    }
+
+
+    //Stock Keluar
+    public function keluarstock(Request $request, $id)
+    {
+        $barang = stock::findOrFail($id);
+
+        $statusBaru = $request->input('status');
+        $barang->status = $statusBaru;
+        $barang->save();
+
+        alert()->success('Berhasil!', 'Status diubah menjadi ' . $statusBaru);
+        return back();
+    }
 }

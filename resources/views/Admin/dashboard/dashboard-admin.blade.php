@@ -25,17 +25,15 @@
                 type: 'bar',
                 data: {
                     labels: [
-                        @foreach ($Product as $key => $p)
-                            '{{ $p->name }}'
-                            @if (!$loop->last),
-                            @endif
+                        @foreach ($Product as $p)
+                            '{{ $p->name }}',
                         @endforeach
                     ],
                     datasets: [{
                             label: 'Stock Masuk',
                             data: [
-                                @foreach ($Product as $p)
-                                    {{ $p->minimum_stock }},
+                                @foreach ($stokMasuk as $value)
+                                    {{ $value }},
                                 @endforeach
                             ],
                             backgroundColor: 'rgba(54, 162, 235, 0.2)',
@@ -45,8 +43,8 @@
                         {
                             label: 'Stock Keluar',
                             data: [
-                                @foreach ($Product as $p)
-                                    {{ $p->minimum_stock }},
+                                @foreach ($stokKeluar as $value)
+                                    {{ $value }},
                                 @endforeach
                             ],
                             backgroundColor: 'rgba(255, 99, 132, 0.2)',

@@ -7,16 +7,32 @@ use App\Models\Product;
 use App\Models\Attribute;
 use App\Models\Suppliers;
 use App\Models\Categories;
+use App\Models\Stock;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
 
     public function index() {
-        $count = Product::count();
-        return view('Admin.dashboard.dashboard-admin',[
-            "count"   =>   $count, 
+       $count = Product::count();
+        $product = Product::all();
+
+        $stokMasuk = [];
+        $stokKeluar = [];
+
+        foreach ($product as $p) {
+            
+            $stokMasuk[] = $p->stock()->where('type', 'masuk')->where('status','diterima')->sum('quantity');
+            $stokKeluar[] = $p->stock()->where('type', 'keluar')->where('status','dikeluarkan')->sum('quantity');
+        }
+
+
+        return view('Admin.dashboard.dashboard-admin', [
+            "count"   =>   $count,
             "Product"  =>     Product::paginate(4),
+            // "stock" => Stock::all(),
+            "stokMasuk"  =>  $stokMasuk,
+            "stokKeluar"  =>  $stokKeluar
         ]);
     }
 

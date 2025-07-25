@@ -7,7 +7,7 @@
                     <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
                         <!-- Modal header -->
                         <div
-                            class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                            class="flex items-center justify-center p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
                             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                                 Kelola Suppliers
                             </h3>
@@ -42,16 +42,9 @@
                                         placeholder="Address" required />
                                 </div>                                                                                      
                                 <div>
-                                    <label for="description"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">description</label>
-                                    <input type="text" name="description" id="description" placeholder="description"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                        required />
-                                </div>
-                                <div>
                                     <label for="phone"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone</label>
-                                    <input type="text" name="phone" id="phone" placeholder="description"
+                                    <input type="text" name="phone" id="phone" placeholder="phone"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                         required />
                                 </div>

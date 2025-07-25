@@ -99,11 +99,11 @@ Route::delete('/transaksi/stock/delete/{stock:id}',[ManagementGudangContoller::c
 Route::get('/staffgudang/dashboard',[StaffController::class, 'dashboard'])->middleware('admin_all');
 Route::get('/staffgudang/stock',[StaffController::class, 'stock'])->middleware('admin_all');
 
-//stock  CRUD
+//Stock
 Route::put('/stock/ubahstatus/{stock:id}',[StaffController::class, 'ubahStatus'])->middleware('admin_all');
-
-
-
+Route::delete('/stock/hapus/{stock:id}',[StaffController::class, 'hapusStock'])->middleware('admin_all');
+Route::put('/stock/return/{stock:id}',[StaffController::class, 'returnStock'])->middleware('admin_all');
+Route::put('/stock/keluar/{stock:id}',[StaffController::class, 'keluarStock'])->middleware('admin_all');
 
 
 

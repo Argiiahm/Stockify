@@ -18,7 +18,8 @@ class ManagementGudangContoller extends Controller
         $today = now()->toDateString();
         $Data = Product::whereDate('created_at', $today)->get();
         return view('ManageGudang.index', [
-            "DataToday"     =>   $Data
+            "DataToday"     =>   $Data,
+            // "Products"      =>   Product::all()
         ]);
     }
 
@@ -84,6 +85,7 @@ class ManagementGudangContoller extends Controller
         }
 
         Stock::create($validasiData);
+            alert()->success('Berhasil!');
         return back();
     }
 }
