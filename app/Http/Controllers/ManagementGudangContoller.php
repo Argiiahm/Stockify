@@ -67,25 +67,21 @@ class ManagementGudangContoller extends Controller
         $validasiData['user_id'] = Auth::id();
         $product = Product::findOrFail($validasiData["product_id"]);
 
-        // if ($validasiData['type'] == 'keluar' && $product->minimum_stock < $validasiData['quantity']) {
-        //     return back()->with('error', 'Stok tidak mencukupi!');
-        // }
+        $stokM = $product->stock->where('type', 'masuk')->where('status', 'diterima')->sum('quantity');
+        $stokK = $product->stock->where('type', 'keluar')->where('status', 'dikeluarkan')->sum('quantity');
 
-        // if ($validasiData['status'] == 'diterima' && $validasiData['type'] == 'masuk') {
-        //     $product->minimum_stock += $validasiData['quantity'];
-        // } elseif ($validasiData['status'] == 'dikeluarkan' && $validasiData['type'] == 'keluar') {
-        //     $product->minimum_stock -= $validasiData['quantity'];
-        // }
-
-        // $product->save();
+        $output = $stokM - $stokK;
 
         if ($validasiData['quantity'] < $product->minimum_stock) {
             alert()->warning('Stok Terlalu Kecil!', 'Minimal Stok: ' . $product->minimum_stock);
             return back();
+        } elseif ($validasiData['quantity'] > $product->quantity) {
+            alert()->warning('Stok Terlalu Kecil!', 'Minimal Stok: ' . $output);
+            return back();
         }
 
         Stock::create($validasiData);
-            alert()->success('Berhasil!');
+        alert()->success('Berhasil!');
         return back();
     }
 }

@@ -82,7 +82,13 @@
                     <td class="py-2 px-3">
                         <img class="w-16" src="{{ asset('storage/' . $p->image) }}" alt="image">
                     </td>
-                    <td>{{ $p->stock->where('type', 'masuk')->where('status', 'diterima')->sum('quantity') }}</td>
+            @php
+                $stokM = $p->stock->where('type', 'masuk')->where('status', 'diterima')->sum('quantity');
+                $stokK = $p->stock->where('type', 'keluar')->where('status', 'dikeluarkan')->sum('quantity');
+
+                $output = $stokM - $stokK;
+            @endphp
+                    <td>{{ $output }}</td>
                </tr>
             @endforeach
          </tbody>

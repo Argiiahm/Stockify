@@ -26,7 +26,7 @@
                         <p class="text-sm text-red-800 mb-1">{{ $message }}</p>
                     @enderror
                     <input class="w-full px-4 py-2 rounded-lg border border-gray-400 bg-blue-50"
-                           id="email" name="email" type="email" value="{{ old('email') }}" required>
+                           id="email" name="email" type="email" value="{{ old('email') }}" required autofocus placeholder="Email">
                 </div>
 
                 {{-- Password --}}
@@ -36,7 +36,7 @@
                         <p class="text-sm text-red-800 mb-1">{{ $message }}</p>
                     @enderror
                     <input class="w-full px-4 py-2 rounded-lg border border-gray-400 bg-blue-50"
-                           id="password" name="password" type="password" required>
+                           id="password" name="password" type="password" required placeholder="Password">
                 </div>
 
                 {{-- Tombol --}}

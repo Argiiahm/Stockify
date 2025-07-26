@@ -10,24 +10,28 @@
                 <p class="mb-3 font-normal text-4xl text-gray-700 dark:text-gray-400">{{ $count }}</p>
             </div>
             @foreach ($Product as $s)
+            @php
+                $stokM = $s->stock->where('type', 'masuk')->where('status', 'diterima')->sum('quantity');
+                $stokK = $s->stock->where('type', 'keluar')->where('status', 'dikeluarkan')->sum('quantity');
+
+                $output = $stokM - $stokK;
+            @endphp
                 <div
                     class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $s->name }}
                         <p class="font-normal text-gray-500">Daftar Stock</p>
                     </h5>
-                    <p class="mb-3 font-normal text-4xl text-gray-700 dark:text-gray-400">
-                        {{ $s->stock->where('type', 'masuk')->where('status', 'diterima')->sum('quantity') }}</p>
+                    <p class="mb-3 font-normal text-4xl text-gray-700 dark:text-gray-400">{{ $output }}</p>
                 </div>
             @endforeach
         </div>
 
         {{-- Filter Berdasarkan Bulan --}}
-        <div class="my-10 flex justify-between items-center">
-            <h1 class="font-bold text-gray-500">
-                Bulan:
-                {{ ['01' => 'Januari', '02' => 'Februari', '03' => 'Maret', '04' => 'April', '05' => 'Mei', '06' => 'Juni', '07' => 'Juli', '08' => 'Agustus', '09' => 'September', '10' => 'Oktober', '11' => 'November', '12' => 'Desember'][explode('-', request('month') ?? date('Y-m'))[1]] }}
-            </h1>
-
+        <div class="my-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <i class="ph ph-trend-up text-4xl text-gray-600"></i>
+                <p class="text-2xl text-gray-400">Data Stok Masuk & Keluar</p>
+            </div>
             <form action="/admin/dashboard/search" method="GET">
                 @csrf
                 <p class="text-gray-400 pb-2">Lihat Berdasarkan Bulan</p>
@@ -35,6 +39,10 @@
                 <button class="px-4 py-2 bg-green-500 text-white font-bold rounded-md" type="submit">Cari</button>
             </form>
         </div>
+        <h1 class="font-bold text-gray-500">
+            Bulan:
+            {{ ['01' => 'Januari', '02' => 'Februari', '03' => 'Maret', '04' => 'April', '05' => 'Mei', '06' => 'Juni', '07' => 'Juli', '08' => 'Agustus', '09' => 'September', '10' => 'Oktober', '11' => 'November', '12' => 'Desember'][explode('-', request('month') ?? date('Y-m'))[1]] }}
+        </h1>
 
         <div>
             <section>

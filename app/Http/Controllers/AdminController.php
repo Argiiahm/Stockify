@@ -29,7 +29,7 @@ class AdminController extends Controller
 
         return view('Admin.dashboard.dashboard-admin', [
             "count"   =>   $count,
-            "Product"  =>     Product::paginate(4),
+            "Product"  =>     Product::all(),
             "stock"        => Stock::all(),
             "stokMasuk"  =>  $stokMasuk,
             "stokKeluar"  =>  $stokKeluar
