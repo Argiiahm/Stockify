@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () { 
     return view('app',[
         "Products"  =>    Product::all(),
@@ -66,7 +67,6 @@ Route::get('/category/edit/{category:id}',[CategoriesController::class, 'edit'])
 Route::post('/category/store',[CategoriesController::class, 'store'])->middleware('admin');
 Route::delete('/category/{category:id}',[CategoriesController::class, 'destroy'])->middleware('admin');
 Route::put('/category/update/{category:id}',[CategoriesController::class, 'update'])->middleware('admin');
-
 
 
 //atribut CRUD - Admin Akses

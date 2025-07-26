@@ -76,7 +76,7 @@ class ManagementGudangContoller extends Controller
             alert()->warning('Stok Terlalu Kecil!', 'Minimal Stok: ' . $product->minimum_stock);
             return back();
         } elseif ($validasiData['quantity'] > $product->quantity) {
-            alert()->warning('Stok Terlalu Kecil!', 'Minimal Stok: ' . $output);
+            alert()->warning('Stok Terlalu Besar!', 'Minimal Stok: ' . $output);
             return back();
         }
 
