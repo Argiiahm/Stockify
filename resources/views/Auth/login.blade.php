@@ -2,64 +2,52 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Login</title>
     @vite('resources/css/app.css')
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </head>
 
-<body>
-    <div class="max-w-screen-lg mx-auto mt-40 p-6 bg-gray-100 flex items-center justify-center">
-        <div class="container m ax-w-screen-lg mx-auto">
-            <div>
-                <h2 class="font-semibold text-xl text-gray-600">Masuk</h2>
-                <p class="text-gray-500 mb-6">Stockify</p>
+<body class="min-h-screen bg-gray-100 flex flex-col justify-center items-center">
+    <div class="w-full min-h-screen bg-gradient-to-br from-purple-500 via-indigo-400 to-blue-600 flex items-center justify-center p-6">
+        <div class="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
+            <h1 class="text-4xl font-bold text-center text-purple-700 mb-6">Welcome <br><span class="lowercase">Stockify</span></h1>
 
-                <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
-                    <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
-                        <div class="text-gray-600">
-                            <p class="font-medium text-lg">Welcome Stokify</p>
-                            <p>Ayo Bergabung!</p>
-                        </div>
+            <form action="/masuk" method="POST" class="space-y-4">
+                @csrf
 
-                        <div class="lg:col-span-2">
-                            <form action="/masuk" method="POST">
-                                @csrf
-                                <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
-
-                                    <div class="md:col-span-5">
-                                        <label for="email">Email Address*</label>
-                                        @error('email')
-                                            <p class="text-red-800">{{ $message }}</p>
-                                        @enderror
-                                        <input type="text" name="email" id="email"
-                                            class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value=""
-                                            placeholder="email@domain.com" />
-                                    </div>
-                                    <div class="md:col-span-5">
-                                        <label for="password">Password*</label>
-                                        @error('password')
-                                           <p class="text-red-800">{{ $message }}</p>
-                                        @enderror
-                                        <input type="password" name="password" id="password"
-                                            class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
-                                    </div>
-                                    <div class="md:col-span-5 text-right">
-                                        <div class="flex items-center justify-between">
-                                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Masuk</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                {{-- Email --}}
+                <div>
+                    <label class="block text-gray-700 font-bold mb-1" for="email">Email address</label>
+                    @error('email')
+                        <p class="text-sm text-red-800 mb-1">{{ $message }}</p>
+                    @enderror
+                    <input class="w-full px-4 py-2 rounded-lg border border-gray-400 bg-blue-50"
+                           id="email" name="email" type="email" value="{{ old('email') }}" required>
                 </div>
-            </div>
+
+                {{-- Password --}}
+                <div>
+                    <label class="block text-gray-700 font-bold mb-1" for="password">Password</label>
+                    @error('password')
+                        <p class="text-sm text-red-800 mb-1">{{ $message }}</p>
+                    @enderror
+                    <input class="w-full px-4 py-2 rounded-lg border border-gray-400 bg-blue-50"
+                           id="password" name="password" type="password" required>
+                </div>
+
+                {{-- Tombol --}}
+                <div>
+                    <button type="submit"
+                            class="w-full bg-purple-700 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-lg transition">
+                        Log In
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </body>
-
 </html>

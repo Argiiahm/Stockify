@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="p-4 sm:ml-64">
-        <div class="grid grid-cols-3 gap-3">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
             <div
                 class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Transaksi Barang Masuk &
@@ -38,17 +38,56 @@
         </div>
 
 
-        @include('product.form-add_product')
         @include('ManageGudang.forms.add_transaksi_masuk_keluar')
         @include('ManageGudang.modal-barang_masuk')
         @include('ManageGudang.modal-barang_keluar')
-        {{-- @include('ManageGudang.forms.add_transaksi_keluar') --}}
 
-
-        {{-- Table Produk --}}
-        @include('product.table-product')
-
-
+         <div class="relative overflow-x-auto my-5">
+     <h1 class="text-2xl my-3">Data Product</h1>
+     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+             <tr>
+              
+                 <th scope="col" class="px-6 py-3">
+                     Name
+                 </th>
+                 <th scope="col" class="px-6 py-3">
+                     Sku
+                 </th>
+                 <th scope="col" class="px-6 py-3">
+                     Description 
+                 </th>
+                 <th scope="col" class="px-6 py-3">
+                     Purchase Price
+                 </th>
+                 <th scope="col" class="px-6 py-3">
+                     Selling Price
+                 </th>
+                 <th scope="col" class="px-6 py-3">
+                     Image
+                 </th>
+                 <th scope="col" class="px-6 py-3">
+                     stock
+                 </th>
+             </tr>
+         </thead>
+         <tbody>
+            @foreach ($Product as $p )
+               <tr class="text-center">
+                    <td>{{ $p->name }}</td>
+                    <td>{{ $p->sku }}</td>
+                    <td>{{ $p->description }}</td>
+                    <td>{{ $p->purchase_price }}</td>
+                    <td>{{ $p->selling_price }}</td>
+                    <td class="py-2 px-3">
+                        <img class="w-16" src="{{ asset('storage/' . $p->image) }}" alt="image">
+                    </td>
+                    <td>{{ $p->stock->where('type', 'masuk')->where('status', 'diterima')->sum('quantity') }}</td>
+               </tr>
+            @endforeach
+         </tbody>
+     </table>
+ </div>
 
     </div>
 @endsection

@@ -38,7 +38,7 @@
                     <td class="py-2 px-3">
                         <img class="w-16" src="{{ asset('storage/' . $p->image) }}" alt="image">
                     </td>
-                    <td>{{ $p->minimum_stock }}</td>
+                    <td>{{ $p->minimum_stok }}</td>
                </tr>
             @endforeach
          </tbody>

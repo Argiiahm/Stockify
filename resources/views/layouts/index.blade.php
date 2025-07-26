@@ -121,7 +121,7 @@
                         <button type="button"
                             class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                             aria-controls="dropdown-m" data-collapse-toggle="dropdown-m">
-                            <i class="ph ph-identification-card"></i>
+                            <i class="ph ph-warehouse"></i>
                             <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Management
                                 Gudang</span>
                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -175,7 +175,7 @@
                     <button type="button"
                         class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                         aria-controls="dropdown-staff" data-collapse-toggle="dropdown-staff">
-                        <i class="ph ph-identification-card"></i>
+                        <i class="ph ph-app-window"></i>
                         <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Stuff Gudang</span>
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 10 6">
@@ -239,13 +239,16 @@
                     class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white flex items-center gap-3">Welcome!
                     @if (Auth::user()->role == 'Admin')
                         Stockify <span
-                            class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300">{{ Auth::user()->role }}</span>
+                            class="tracking-wider text-white bg-blue-500 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold" title="">
+                           <i class="fas fa-star" aria-hidden="true"></i>{{ Auth::user()->role }}</span>
                     @elseif (Auth::user()->role == 'Manajer gudang')
                         <span
-                            class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-green-900 dark:text-green-300">{{ Auth::user()->role }}</span>
+                            class="tracking-wider text-white bg-yellow-500 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold" title="">
+                           <i class="fas fa-heart" aria-hidden="true"></i>{{ Auth::user()->role }}</span>
                     @elseif (Auth::user()->role == 'Staff gudang')
                         <span
-                            class="bg-purple-100 text-purple-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-purple-900 dark:text-purple-300">{{ Auth::user()->role }}</span>
+                            class="tracking-wider text-white bg-green-500 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold" title="">
+                           <i class="fas fa-award" aria-hidden="true"></i>{{ Auth::user()->role }}</span>
                     @endif
                 </span>
                 <div class="flex items-center gap-5">
@@ -281,7 +284,7 @@
                     @endif
                 </div>
             </div>
-        </nav>
+        </nav>   
     </div>
     @yield('content')
 

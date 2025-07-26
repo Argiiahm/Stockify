@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () { 
     return view('app',[
-        "Products"  =>    Product::all()
+        "Products"  =>    Product::all(),
     ]);
 })->middleware('auth');
 
@@ -45,8 +45,9 @@ Route::delete('/pengguna/delete/{pengguna:id}',[AuthController::class, 'delete']
 
 //Halaman Admin
 Route::get('/admin/dashboard',[AdminController::class, 'index'])->middleware('admin');
+Route::get('/admin/dashboard/search',[AdminController::class, 'search'])->middleware('admin');
 Route::get('/admin/produk',[AdminController::class, 'product'])->middleware('admin');
-Route::get('/admin/stock',[AdminController::class, 'stock'])->middleware('admin');
+// Route::get('/admin/stock',[AdminController::class, 'stock'])->middleware('admin');
 Route::get('/admin/supplier',[AdminController::class, 'supplier'])->middleware('admin');
 Route::get('/admin/pengguna',[AdminController::class, 'pengguna'])->middleware('admin');
 Route::get('/admin/laporan',[AdminController::class, 'laporan'])->middleware('admin');

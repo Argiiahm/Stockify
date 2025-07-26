@@ -8,6 +8,7 @@ use App\Models\Suppliers;
 use App\Models\Categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
 {
@@ -35,29 +36,23 @@ class ProductController extends Controller
          "category_id"     =>       "required",
          "supplier_id"     =>       "required"
       ]);
-      
-      //   $categories = Categories::findOrFail($request->category_id);
-      //   $suppliers = Suppliers::findOrFail($request->supplier_id);
-
 
       if ($request->file('image')) {
          $validasiData['image']  =  $request->file('image')->store('product-image', 'public');
       }
 
 
-      //   $validasiData['category_id'] = $categories->id;
-      //   $validasiData['supplier_id'] = $suppliers->id;
-
-         //dd($validasiData);  
-
       if (Product::create($validasiData)) {
-         if(Auth::user()->role == "Admin") {
+         if (Auth::user()->role == "Admin") {
+            alert()->success('SuccessAlert', 'Barang Berhasil DiTambahkan!');
             return redirect('/admin/produk');
-         }elseif(Auth::user()->role == "Manajer gudang") {
+         } elseif (Auth::user()->role == "Manajer gudang") {
+            alert()->success('SuccessAlert', 'Barang Berhasil DiTambahkan!');
             return redirect('/management_gudang');
          }
       } else {
          return back();
+         alert()->success('warningAlert', 'Barang Gagal DiTambahkan!');
       }
    }
 }

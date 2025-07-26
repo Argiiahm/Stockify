@@ -31,8 +31,8 @@ class StaffController extends Controller
         $barang->status = $statusBaru;
         $barang->save();
 
-        return back();
         alert()->success('Berhasil!', 'Status diubah menjadi ' . $statusBaru);
+        return back();
     }
     //hapus stock
     public function hapusstock(Stock $stock)

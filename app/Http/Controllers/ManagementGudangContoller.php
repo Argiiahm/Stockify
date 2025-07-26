@@ -45,7 +45,7 @@ class ManagementGudangContoller extends Controller
         $today = now()->toDateString();
         $Data = Product::whereDate('created_at', $today)->get();
         return view('ManageGudang.stock', [
-            "Product"  =>     Product::paginate(3),
+            "Product"  =>     Product::all(),
             "Suppliers"  =>   Suppliers::all(),
             "Categories"  =>  Categories::all(),
             "Products"     => $allProduct,
