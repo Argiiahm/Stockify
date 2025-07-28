@@ -30,6 +30,11 @@ Route::get('/', function () {
 })->middleware('auth');
 
 
+
+// Details Product
+Route::get('/detail_product/{product:id}',[ProductController::class, 'details']);
+
+
 //User Login
 Route::get('/login',[AuthController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/masuk',[AuthController::class, 'masuk'])->middleware('guest');
@@ -48,7 +53,7 @@ Route::delete('/pengguna/delete/{pengguna:id}',[AuthController::class, 'delete']
 Route::get('/admin/dashboard',[AdminController::class, 'index'])->middleware('admin');
 Route::get('/admin/dashboard/search',[AdminController::class, 'search'])->middleware('admin');
 Route::get('/admin/produk',[AdminController::class, 'product'])->middleware('admin');
-// Route::get('/admin/stock',[AdminController::class, 'stock'])->middleware('admin');
+Route::get('/admin/stock',[AdminController::class, 'stock'])->middleware('admin');
 Route::get('/admin/supplier',[AdminController::class, 'supplier'])->middleware('admin');
 Route::get('/admin/pengguna',[AdminController::class, 'pengguna'])->middleware('admin');
 Route::get('/admin/laporan',[AdminController::class, 'laporan'])->middleware('admin');

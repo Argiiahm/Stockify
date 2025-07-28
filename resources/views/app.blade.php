@@ -17,7 +17,7 @@
 
               <!-- Deskripsi-->
               <div class="mb-400 text-l text-gray-400">{{ $p->description }}</div>
-              <div class="text-2xl text-gray-500">Rp. {{ $p->purchase_price }}</div>
+              <div class="text-2xl text-gray-500">Rp. {{ $p->selling_price }}</div>
           </div>
         </a>
         @endforeach

@@ -55,4 +55,12 @@ class ProductController extends Controller
          alert()->success('warningAlert', 'Barang Gagal DiTambahkan!');
       }
    }
+
+   // Details
+   public function details(Product $product) {
+      return view('product.details-product.index',[
+         "product" => $product,
+         "all"     =>  Product::all()
+      ]);
+   }
 }

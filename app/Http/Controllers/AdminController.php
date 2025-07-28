@@ -37,6 +37,15 @@ class AdminController extends Controller
         ]);
     }
 
+
+    public function stock() {
+        $count = Product::count();
+        return view('Admin.dashboard.admin-stock',[
+           "count"  =>  $count,
+           "Product" =>  Product::paginate(4)
+        ]);
+    }
+
     public function search(Request $request)
     {
         $request->validate([

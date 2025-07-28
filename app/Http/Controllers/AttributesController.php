@@ -8,42 +8,49 @@ use Illuminate\Http\Request;
 class AttributesController extends Controller
 {
     //
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $vdata = $request->validate([
             'product_id' => 'required',
             'name' => 'required',
             'value' => 'required',
-        ]); 
-        if(Attribute::create($vdata)){
+        ]);
+        if (Attribute::create($vdata)) {
+            alert()->success('Berhasil! Menambahkan Attribute');
             return redirect('/admin/produk/');
-        }else{
+        } else {
             return back();
         }
-       }
+    }
 
-       public function destroy(Attribute $attribute){
-        if($attribute->delete()){
+    public function destroy(Attribute $attribute)
+    {
+        if ($attribute->delete()) {
+            alert()->success('Berhasil! Menghapus Attribute');
             return redirect('/admin/produk');
-        }else{
+        } else {
             return back();
         }
-       }
+    }
 
-       public function edit(Attribute $attribute){
-        return view('atribut.form-edit',[
+    public function edit(Attribute $attribute)
+    {
+        return view('atribut.form-edit', [
             'attribute' => $attribute
         ]);
-       }
+    }
 
-       public function update(Request $request, Attribute $attribute){
+    public function update(Request $request, Attribute $attribute)
+    {
         $vdata = $request->validate([
             'name' => 'required',
             'value' => 'required',
         ]);
-        if($attribute->update($vdata)){
+        if ($attribute->update($vdata)) {
+            alert()->success('Berhasil! Mengubah Attribute');
             return redirect('/admin/produk');
-        }else{
+        } else {
             return back();
         }
-           }
+    }
 }
