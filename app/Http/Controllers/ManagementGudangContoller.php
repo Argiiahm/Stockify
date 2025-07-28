@@ -72,13 +72,16 @@ class ManagementGudangContoller extends Controller
 
         $output = $stokM - $stokK;
 
-        if ($validasiData['quantity'] < $product->minimum_stock) {
-            alert()->warning('Stok Terlalu Kecil!', 'Minimal Stok: ' . $product->minimum_stock);
-            return back();
-        } elseif ($validasiData['quantity'] > $product->quantity) {
-            alert()->warning('Stok Terlalu Besar!', 'Minimal Stok: ' . $output);
+        if ($validasiData['type'] === 'masuk' && $validasiData['quantity'] < $product->minimum_stock) {
+            alert()->warning('Gagal!', 'Minimal Stok Masuk: ' . $product->minimum_stock);
             return back();
         }
+
+        if ($validasiData['type'] === 'keluar' && $validasiData['quantity'] > $output) {
+            alert()->warning('Gagal!', 'Stok tidak mencukupi! Tersedia: ' . $output);
+            return back();
+        }
+
 
         Stock::create($validasiData);
         alert()->success('Berhasil!');

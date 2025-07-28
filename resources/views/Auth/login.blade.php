@@ -14,7 +14,7 @@
 <body class="min-h-screen bg-gray-100 flex flex-col justify-center items-center">
     <div class="w-full min-h-screen bg-gradient-to-br from-purple-500 via-indigo-400 to-blue-600 flex items-center justify-center p-6">
         <div class="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
-            <h1 class="text-4xl font-bold text-center text-purple-700 mb-6">Welcome <br><span class="lowercase">Stockify</span></h1>
+            <h1 class="text-4xl font-bold text-center text-purple-700 mb-12">Welcome <span class="lowercase font-normal">Stockify</span></h1>
 
             <form action="/masuk" method="POST" class="space-y-4">
                 @csrf

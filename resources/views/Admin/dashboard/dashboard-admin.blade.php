@@ -5,9 +5,9 @@
         {{-- Stock Product by Name --}}
         <div class="grid grid-cols-1 md:grid-cols-4 gap-2">
             <div
-                class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Jumlah Produk</h5>
-                <p class="mb-3 font-normal text-4xl text-gray-700 dark:text-gray-400">{{ $count }}</p>
+                class="max-w-sm p-6 bg-blue-700 border border-gray-200 rounded-lg shadow-sm dark:bg-blue-700">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">Jumlah Produk</h5>
+                <p class="mb-3 font-normal text-4xl text-white">{{ $count }}</p>
             </div>
             @foreach ($Product as $s)
             @php

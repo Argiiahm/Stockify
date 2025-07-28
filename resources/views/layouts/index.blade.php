@@ -11,8 +11,10 @@
 <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 <link rel="stylesheet" type="text/css"
     href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+<link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <body>
@@ -36,18 +38,19 @@
             <ul class="space-y-2 font-medium">
                 <li class="flex items-center">
                     <img class="w-24" src="{{ asset('image/logo.png') }}" alt="">
-                    <span class=" text-gray-500">Stokify</span>
+                    <div
+                        style="font-family: 'Poppins', sans-serif; font-size: 30px; font-weight: bold;
+            background: linear-gradient(to right, #3B82F6, #1E3A8A);
+            -webkit-background-clip: text; color: transparent; display: inline-block;"> Stockify
+                    </div>
+
                 </li>
                 <li>
                     <a href="/"
                         class="flex {{ Request()->is('/') ? 'bg-gray-700' : '' }} items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                            viewBox="0 0 18 18">
-                            <path
-                                d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
+                        <svg class="w-6 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 30 30">>
+                           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1v3m5-3v3m5-3v3M1 7h18M5 11h10M2 3h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/>
                         </svg>
-
                         <span class="flex-1 ms-3 whitespace-nowrap">Stokify</span>
                         <span
                             class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Home</span>
@@ -205,17 +208,20 @@
                     class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white flex items-center gap-3">Welcome!
                     @if (Auth::user()->role == 'Admin')
                         Stockify <span
-                            class="tracking-wider flex gap-2 items-center text-white bg-blue-500 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold" title="">
-                           <i class="fas fa-star" aria-hidden="true"></i>{{ Auth::user()->role }}</span>
+                            class="tracking-wider flex gap-2 items-center text-white bg-blue-500 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold"
+                            title="">
+                            <i class="fas fa-star" aria-hidden="true"></i>{{ Auth::user()->role }}</span>
                     @elseif (Auth::user()->role == 'Manajer gudang')
                         <span
-                            class="tracking-wider flex items-center gap-2 text-white bg-orange-500 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold" title="">
-                           <i class="fas fa-heart" aria-hidden="true"></i>{{ Auth::user()->role }}
+                            class="tracking-wider flex items-center gap-2 text-white bg-orange-500 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold"
+                            title="">
+                            <i class="fas fa-heart" aria-hidden="true"></i>{{ Auth::user()->role }}
                         </span>
                     @elseif (Auth::user()->role == 'Staff gudang')
                         <span
-                            class="tracking-wider text-white bg-green-500 flex items-center gap-2 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold" title="">
-                           <i class="fas fa-award" aria-hidden="true"></i>{{ Auth::user()->role }}
+                            class="tracking-wider text-white bg-green-500 flex items-center gap-2 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold"
+                            title="">
+                            <i class="fas fa-award" aria-hidden="true"></i>{{ Auth::user()->role }}
                         </span>
                     @endif
                 </span>
@@ -252,7 +258,7 @@
                     @endif
                 </div>
             </div>
-        </nav>   
+        </nav>
     </div>
     @yield('content')
 
