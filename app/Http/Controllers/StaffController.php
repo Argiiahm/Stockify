@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Stock;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -12,13 +13,20 @@ class StaffController extends Controller
     {
         return view('staffGudang.index');
     }
+
+
     public function dashboard()
+
     {
-        return view('staffGudang.dashboard');
+
+        return view('staffGudang.dashboard', [
+            'stock' => stock::all()
+        ]);
     }
 
     public function stock()
     {
+
         return view('staffGudang.stock', [
             'stock' => stock::all()
         ]);
@@ -52,7 +60,6 @@ class StaffController extends Controller
 
 
         $barang->type = $typebaru;
-        // $barang->status = $typebaru;
         $barang->save();
 
         alert()->success('Berhasil!');
@@ -71,5 +78,19 @@ class StaffController extends Controller
 
         alert()->success('Berhasil!', 'Status diubah menjadi ' . $statusBaru);
         return back();
+    }
+
+
+    //detail products
+    public function detailStock(Stock $stock)
+    {
+        $riwayat = Stock::where('product_id', $stock->product_id)
+            ->whereIn('status', ['diterima', 'dikeluarkan'])
+            ->orderBy('date', 'desc')
+            ->get();
+
+        return view('stock-admin.detail-stock-admin', [
+            "stock"  => $riwayat
+        ]);
     }
 }

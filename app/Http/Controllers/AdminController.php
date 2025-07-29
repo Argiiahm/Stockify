@@ -38,11 +38,27 @@ class AdminController extends Controller
     }
 
 
-    public function stock() {
+    public function stock()
+    {
         $count = Product::count();
-        return view('Admin.dashboard.admin-stock',[
-           "count"  =>  $count,
-           "Product" =>  Product::paginate(4)
+
+        $product = Product::all();
+
+        $stokMasuk = [];
+        $stokKeluar = [];
+
+        foreach ($product as $p) {
+
+            $stokMasuk[] = $p->stock()->where('type', 'masuk')->where('status', 'diterima')->sum('quantity');
+            $stokKeluar[] = $p->stock()->where('type', 'keluar')->where('status', 'dikeluarkan')->sum('quantity');
+        }
+
+
+        return view('Admin.dashboard.admin-stock', [
+            "count"  =>  $count,
+            "product" =>  Product::all(),
+            "stockMasuk" =>  $stokMasuk,
+            "stockKeluar" =>  $stokKeluar
         ]);
     }
 
@@ -87,13 +103,14 @@ class AdminController extends Controller
 
     public function product()
     {
+
         $count = Product::count();
         return view('Admin.admin-product', [
             "Product"  =>     Product::paginate(4),
             "Suppliers"  =>   Suppliers::all(),
             "Categories"  =>  Categories::all(),
             "Attribute"   =>   Attribute::all(),
-            "count"   =>   $count
+            "count"   =>   $count,
         ]);
     }
 

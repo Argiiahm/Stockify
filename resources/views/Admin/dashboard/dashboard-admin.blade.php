@@ -4,18 +4,17 @@
     <div class="p-4 sm:ml-64">
         {{-- Stock Product by Name --}}
         <div class="grid grid-cols-1 md:grid-cols-4 gap-2">
-            <div
-                class="max-w-sm p-6 bg-blue-700 border border-gray-200 rounded-lg shadow-sm dark:bg-blue-700">
+            <div class="max-w-sm p-6 bg-blue-700 border border-gray-200 rounded-lg shadow-sm dark:bg-blue-700">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">Jumlah Produk</h5>
                 <p class="mb-3 font-normal text-4xl text-white">{{ $count }}</p>
             </div>
             @foreach ($Product as $s)
-            @php
-                $stokM = $s->stock->where('type', 'masuk')->where('status', 'diterima')->sum('quantity');
-                $stokK = $s->stock->where('type', 'keluar')->where('status', 'dikeluarkan')->sum('quantity');
+                @php
+                    $stokM = $s->stock->where('type', 'masuk')->where('status', 'diterima')->sum('quantity');
+                    $stokK = $s->stock->where('type', 'keluar')->where('status', 'dikeluarkan')->sum('quantity');
 
-                $output = $stokM - $stokK;
-            @endphp
+                    $output = $stokM - $stokK;
+                @endphp
                 <div
                     class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $s->name }}
@@ -70,8 +69,8 @@
                                     {{ $value }},
                                 @endforeach
                             ],
-                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                            borderColor: 'rgba(54, 162, 235, 1)',
+                            backgroundColor: 'rgba(52, 105, 154)',
+                            borderColor: 'rgba(173, 238, 217)',
                             borderWidth: 1
                         },
                         {
@@ -81,8 +80,8 @@
                                     {{ $value }},
                                 @endforeach
                             ],
-                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                            borderColor: 'rgba(255, 99, 132, 1)',
+                            backgroundColor: 'rgba(177, 44, 0)',
+                            borderColor: 'rgba(237, 53, 0)',
                             borderWidth: 1
                         }
                     ]

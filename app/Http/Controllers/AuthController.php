@@ -25,6 +25,16 @@ class AuthController extends Controller
 
         Auth::attempt($vd);
         return redirect('/');
+
+        // if (Auth::attempt($vd)) {
+        //     if (Auth::user()->role == "Admin") {
+        //         return redirect('/admin/dashboard');
+        //     } elseif (Auth::user()->role == "Manajer gudang") {
+        //         return redirect('/management_gudang/dashboard');
+        //     }elseif(Auth::user()->role == "Staff gudang") {
+        //         return redirect('/staffgudang/dashboard');
+        //     }
+        // }
     }
 
 

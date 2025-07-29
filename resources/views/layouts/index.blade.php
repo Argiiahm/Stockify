@@ -36,25 +36,8 @@
         aria-label="Sidebar">
         <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
-                <li class="flex items-center">
-                    <img class="w-24" src="{{ asset('image/logo.png') }}" alt="">
-                    <div
-                        style="font-family: 'Poppins', sans-serif; font-size: 30px; font-weight: bold;
-            background: linear-gradient(to right, #3B82F6, #1E3A8A);
-            -webkit-background-clip: text; color: transparent; display: inline-block;"> Stockify
-                    </div>
-
-                </li>
-                <li>
-                    <a href="/"
-                        class="flex {{ Request()->is('/') ? 'bg-gray-700' : '' }} items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <svg class="w-6 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 30 30">>
-                           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1v3m5-3v3m5-3v3M1 7h18M5 11h10M2 3h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/>
-                        </svg>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Stokify</span>
-                        <span
-                            class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Home</span>
-                    </a>
+                <li class="flex justify-center">
+                    <img src="{{ asset('storage/' . $property_app->app_image) }}" alt="Logo" class="w-32 h-32">
                 </li>
                 {{-- Admin Route --}}
                 @if (Auth::user()->role == 'Admin')
@@ -205,9 +188,9 @@
         <nav class="border-gray-200 rounded-md shadow-md bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <span
-                    class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white flex items-center gap-3">Welcome!
+                    class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white flex items-center gap-3">
                     @if (Auth::user()->role == 'Admin')
-                        Stockify <span
+                        {{ $property_app->app_name }}<span
                             class="tracking-wider flex gap-2 items-center text-white bg-blue-500 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold"
                             title="">
                             <i class="fas fa-star" aria-hidden="true"></i>{{ Auth::user()->role }}</span>

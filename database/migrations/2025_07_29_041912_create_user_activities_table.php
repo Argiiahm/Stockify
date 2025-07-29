@@ -11,16 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stocks', function (Blueprint $table) {
+        Schema::create('user_activities', function (Blueprint $table) {
             $table->id();
-            $table->string('slug');
-            $table->foreignId('product_id');
             $table->foreignId('user_id');
-            $table->enum('type', ['masuk', 'keluar']);
-            $table->integer('quantity');
-            $table->date('date');
-            $table->enum('status', ['pending', 'diterima', 'ditolak','dikeluarkan'])->nullable();
-            $table->text('note')->nullable();
+            $table->string('action'); 
             $table->timestamps();
         });
     }
@@ -30,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('stocks');
+        Schema::dropIfExists('user_activities');
     }
 };

@@ -1,4 +1,4 @@
- <div class="relative overflow-x-auto my-5 p-4 sm:ml-64">
+ <div class="relative overflow-x-------auto my-5 p-4 sm:ml-64">
      <h1 class="text-2xl my-3">Daftar Barang (Pending)</h1>
      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
          <thead class="text-xs text-center text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

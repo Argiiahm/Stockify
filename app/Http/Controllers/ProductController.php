@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Product;
 use App\Models\Suppliers;
 use App\Models\Categories;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -34,12 +35,14 @@ class ProductController extends Controller
          "image"           =>       "image|file|mimes:png,jpg,jpeg",
          "minimum_stock"   =>       "required",
          "category_id"     =>       "required",
-         "supplier_id"     =>       "required"
+         "supplier_id"     =>       "required",
       ]);
 
       if ($request->file('image')) {
          $validasiData['image']  =  $request->file('image')->store('product-image', 'public');
       }
+
+      $validasiData['slug']  = Str::slug($request->name);
 
 
       if (Product::create($validasiData)) {

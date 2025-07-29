@@ -6,6 +6,7 @@ use App\Models\Stock;
 use App\Models\Product;
 use App\Models\Suppliers;
 use App\Models\Categories;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -25,7 +26,15 @@ class ManagementGudangContoller extends Controller
 
     public function produk()
     {
-        return view('ManageGudang.produk',);
+        return view('ManageGudang.produk',[
+            "product"     =>     Product::all()
+        ]);
+    }
+
+    public function detail(Product $product) {
+        return view('ManageGudang.details-product',[
+            "product"   =>    $product
+        ]);
     }
 
     public function supplier()
@@ -43,12 +52,13 @@ class ManagementGudangContoller extends Controller
     {
         $allProduct = Product::all();
         $today = now()->toDateString();
+        
         $Data = Product::whereDate('created_at', $today)->get();
         return view('ManageGudang.stock', [
-            "Product"  =>     Product::all(),
-            "Suppliers"  =>   Suppliers::all(),
-            "Categories"  =>  Categories::all(),
-            "Products"     => $allProduct,
+            "Product"   =>       Product::all(),
+            "Suppliers"  =>      Suppliers::all(),
+            "Categories"  =>     Categories::all(),
+            "Products"     =>    $allProduct,
             "DataToday"     =>   $Data
         ]);
     }
@@ -66,6 +76,7 @@ class ManagementGudangContoller extends Controller
 
         $validasiData['user_id'] = Auth::id();
         $product = Product::findOrFail($validasiData["product_id"]);
+        $validasiData['slug'] = Str::slug($product->name);
 
         $stokM = $product->stock->where('type', 'masuk')->where('status', 'diterima')->sum('quantity');
         $stokK = $product->stock->where('type', 'keluar')->where('status', 'dikeluarkan')->sum('quantity');
