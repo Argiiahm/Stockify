@@ -18,7 +18,7 @@ class isAdmin
     {
 
        if(!Auth::check() || !in_array(Auth::user()->role, ['Admin'])) {
-         abort(404);
+          abort(404);
        }
 
         return $next($request);

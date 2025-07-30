@@ -93,4 +93,8 @@ class StaffController extends Controller
             "stock"  => $riwayat
         ]);
     }
+
+    public function detailkosong(){
+        return view('stock-admin.detail-kosong');
+    }
 }

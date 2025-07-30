@@ -48,10 +48,17 @@
                             <td class="px-6 py-4">
                                 {{ $hasil  }}
                             </td>
+                            @if ($hasil == 0)
                             <td class="px-6 py-4">
-                                <a href="/stock/detail/{{ $p->slug }}"
+                                <a href="/stock/detail"
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
                             </td>
+                                @else
+                            <td class="px-6 py-4">
+                                <a href="/stock/detail/{{ $p->slug }}"
+                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
+                            </td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>

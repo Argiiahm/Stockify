@@ -9,7 +9,6 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PropertyAppController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\SuppliersController;
-use App\Models\Property_app;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,10 +31,7 @@ Route::get('/', function () {
         return redirect('/management_gudang/dashboard');
     } elseif (Auth::user()->role == "Staff gudang") {
         return redirect('/staffgudang/dashboard');
-    }
-
-     $property_app = Property_app::first();
-     
+    }     
      
 })->middleware('auth');
 
@@ -69,17 +65,17 @@ Route::get('/admin/supplier', [AdminController::class, 'supplier'])->middleware(
 Route::get('/admin/pengguna', [AdminController::class, 'pengguna'])->middleware('admin');
 Route::get('/admin/laporan', [AdminController::class, 'laporan'])->middleware('admin');
 
-
+//detail stock
 Route::get('/stock/detail/{stock:slug}', [StaffController::class, 'detailStock'])->middleware('admin');
+Route::get('/stock/detail/', [StaffController::class, 'detailkosong'])->middleware('admin');
 
-
+//pengaturan aplikasi
 Route::get('/admin/pengaturan', [PropertyAppController::class, 'index'])->middleware('admin');
 Route::put('/pengaturan/update/{property_app:id}', [PropertyAppController::class, 'update'])->middleware('admin');
 
 
 //Product CRUD - Admin Akses
 Route::post('/product/store', [ProductController::class, 'store'])->middleware('admin_gudang');
-
 
 
 //Categories CRUD - Admin Akses
@@ -90,19 +86,17 @@ Route::delete('/category/{category:id}', [CategoriesController::class, 'destroy'
 Route::put('/category/update/{category:id}', [CategoriesController::class, 'update'])->middleware('admin');
 
 
-//atribut CRUD - Admin Akses
+//Attributes CRUD - Admin Akses
 Route::post('/attribute/store', [AttributesController::class, 'store'])->middleware('admin');
 Route::delete('/attribute/delete/{attribute:id}', [AttributesController::class, 'destroy'])->middleware('admin');
 Route::get('/attribute/edit/{attribute:id}', [AttributesController::class, 'edit'])->middleware('admin');
 Route::put('/attribute/update/{attribute:id}', [AttributesController::class, 'update'])->middleware('admin');
-
 
 //Suppliers CRUD - Admin Akses
 Route::post('/suppliers', [SuppliersController::class, 'store'])->middleware('admin');
 Route::delete('/suppliers/{suppliers:id}', [SuppliersController::class, 'destroy'])->middleware('admin');
 Route::get('/suppliers/edit/{suppliers:id}', [SuppliersController::class, 'edit'])->middleware('admin');
 Route::put('/suppliers/update/{suppliers:id}', [SuppliersController::class, 'update'])->middleware('admin');
-
 
 //Management Gudang
 Route::get('/management_gudang/dashboard', [ManagementGudangContoller::class, 'dashboard'])->middleware('admin_gudang');
