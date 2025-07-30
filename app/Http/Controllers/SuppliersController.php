@@ -18,7 +18,7 @@ class SuppliersController extends Controller
         ]);
 
         if (Suppliers::create($vData)) {
-            alert()->success('successAlert', 'Suppliers DiTanbahkan!');
+            alert()->success('successAlert', 'Suppliers DiTambahkan!');
             return redirect('/admin/supplier');
         } else {
             return back();

@@ -20,13 +20,13 @@
                  </th>
              </tr>
          </thead>
-         <tbody>
+         <tbody class="">
              @foreach ($Suppliers as $s)
                  <tr class="">
-                     <td>{{ Str::limit($s->name, 7) }}</td>
-                     <td>{{ Str::limit($s->address, 5) }}</td>
-                     <td>{{ Str::limit(Str::mask($s->phone, '*', 10), 20) }}</td>
-                     <td>{{ Str::limit(Str::mask($s->email, '*', 9), 7) }}</td>
+                     <td class="">{{ Str::limit($s->name, 7) }}</td>
+                     <td class="">{{ Str::limit($s->address, 5) }}</td>
+                     <td class="">{{ Str::limit(Str::mask($s->phone, '*', 10), 20) }}</td>
+                     <td class="">{{ Str::limit(Str::mask($s->email, '*', 9), 7) }}</td>
                      <td class="flex items-center gap-2 py-2">
                          <form action="/suppliers/{{ $s->id }}" method="POST">
                              @csrf

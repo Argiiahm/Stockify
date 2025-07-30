@@ -31,12 +31,16 @@
                 <i class="ph ph-trend-up text-4xl text-gray-600"></i>
                 <p class="text-2xl text-gray-400">Data Stok Masuk & Keluar</p>
             </div>
-            <form action="/admin/dashboard/search" method="GET">
-                @csrf
-                <p class="text-gray-400 pb-2">Lihat Berdasarkan Bulan</p>
-                <input name="month" type="month" value="{{ Request('month') }}">
-                <button class="px-4 py-2 bg-green-500 text-white font-bold rounded-md" type="submit">Cari</button>
-            </form>
+            <div class="bg-gray-800 p-4 rounded-md shadow-md">
+    <form action="/admin/dashboard/search" method="GET">
+        @csrf
+        <p class="text-gray-300 pb-2">Lihat Berdasarkan Bulan</p>
+        <input name="month" type="month" value="{{ Request('month') }}"
+               class="mb-2 p-2 rounded-md bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-400">
+        <button class="px-4 py-2 bg-green-500 text-white font-bold rounded-md" type="submit">Cari</button>
+    </form>
+</div>
+
         </div>
         <h1 class="font-bold text-gray-500">
             Bulan:

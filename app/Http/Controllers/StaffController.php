@@ -71,13 +71,29 @@ class StaffController extends Controller
     public function keluarstock(Request $request, $id)
     {
         $barang = stock::findOrFail($id);
+        $product = Product::find($barang->product_id);
+        //hasil stock
+        $stokM = $product->stock->where('type', 'masuk')->where('status', 'diterima')->sum('quantity');
+        $stokK = $product->stock->where('type', 'keluar')->where('status', 'dikeluarkan')->sum('quantity');
+        $output = $stokM - $stokK;
 
         $statusBaru = $request->input('status');
         $barang->status = $statusBaru;
-        $barang->save();
 
-        alert()->success('Berhasil!', 'Status diubah menjadi ' . $statusBaru);
-        return back();
+        if ($output <= 0) {
+            alert()->error('Stock Kosong');
+            return back();
+        } else {
+            if ($barang['type'] === 'keluar' && $barang['quantity'] == $output < $product->minimum_stock) {
+                $barang->save();
+                alert()->success('Berhasil! , stock terisisa ' . $output - $barang['quantity']);
+                return back();
+            } else {
+                $barang->save();
+                alert()->success('Berhasil!, Status diubah menjadi ' . $statusBaru);
+                return back();
+            }
+        }
     }
 
 
@@ -94,7 +110,8 @@ class StaffController extends Controller
         ]);
     }
 
-    public function detailkosong(){
+    public function detailkosong()
+    {
         return view('stock-admin.detail-kosong');
     }
 }

@@ -36,23 +36,42 @@
         aria-label="Sidebar">
         <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
+
+                {{-- Logo --}}
+                @php
+                    $imagePath = $property_app->app_image;
+                @endphp
+
                 <li class="flex justify-center">
-                    <img src="{{ asset('storage/' . $property_app->app_image) }}" alt="Logo" class="w-32 h-32">
+                    <div class="bg-gray-700 w-64 h-36 p-2 rounded-md shadow-md flex items-center justify-center">
+                        <img src="{{ Str::startsWith($imagePath, 'image/') ? asset($imagePath) : asset('storage/' . $imagePath) }}"
+                            alt="Logo" class="h-full object-contain">
+                    </div>
                 </li>
+
+
+
+
+
                 {{-- Admin Route --}}
                 @if (Auth::user()->role == 'Admin')
                     <li>
-                        <button type="button"
-                            class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                            aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                            <i class="ph ph-identification-card"></i>
-                            <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Admin</span>
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 10 6">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="m1 1 4 4 4-4" />
-                            </svg>
-                        </button>
+                         <button type="button"
+                        class="flex items-center w-full p-2 text-base bg-gray-700 text-white transition duration-75 rounded-lg group hover:bg-gray-600"
+                        aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+
+                        <i class="ph ph-identification-card text-white"></i>
+
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Admin</span>
+
+                        <svg class="w-3 h-3 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="m1 1 4 4 4-4" />
+                        </svg>
+                    </button>
+
+
                         <ul id="dropdown-example" class="hidden py-2 space-y-2">
                             <li>
                                 <a href="/admin/dashboard"
@@ -76,11 +95,11 @@
                             </li>
                             <li>
                                 <a href="/admin/laporan"
-                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Laporan</a>
+                                    class="flex items-center {{ Request()->is('admin/laporan') ? 'bg-gray-700' : '' }} w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Laporan</a>
                             </li>
                             <li>
                                 <a href="/admin/pengaturan"
-                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Pengaturan</a>
+                                    class="flex items-center {{ Request()->is('admin/pengaturan') ? 'bg-gray-700' : '' }} w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Pengaturan</a>
                             </li>
                         </ul>
                     </li>
@@ -106,17 +125,22 @@
                 @if (Auth::user()->role == 'Manajer gudang' || Auth::user()->role == 'Admin')
                     <li>
                         <button type="button"
-                            class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                            class="flex items-center w-full p-2 text-base bg-gray-700 text-white transition duration-75 rounded-lg group hover:bg-gray-600"
                             aria-controls="dropdown-m" data-collapse-toggle="dropdown-m">
-                            <i class="ph ph-warehouse"></i>
+
+                            <i class="ph ph-warehouse text-white"></i>
+
                             <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Management
                                 Gudang</span>
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 10 6">
+
+                            <svg class="w-3 h-3 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 10 6">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="m1 1 4 4 4-4" />
                             </svg>
                         </button>
+
+
                         <ul id="dropdown-m" class="hidden py-2 space-y-2">
                             <li>
                                 <a href="/management_gudang/dashboard"
@@ -160,16 +184,20 @@
                 {{-- Staff Gudang Route --}}
                 <li>
                     <button type="button"
-                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                        class="flex items-center w-full p-2 text-base bg-gray-700 text-white transition duration-75 rounded-lg group hover:bg-gray-600"
                         aria-controls="dropdown-staff" data-collapse-toggle="dropdown-staff">
-                        <i class="ph ph-app-window"></i>
-                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Stuff Gudang</span>
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 10 6">
+
+                        <i class="ph ph-identification-card text-white"></i>
+
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Staff Gudang</span>
+
+                        <svg class="w-3 h-3 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 10 6">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="2" d="m1 1 4 4 4-4" />
                         </svg>
                     </button>
+
                     <ul id="dropdown-staff" class="hidden py-2 space-y-2">
                         <li>
                             <a href="/staffgudang/dashboard"
@@ -177,7 +205,7 @@
                         </li>
                         <li>
                             <a href="/staffgudang/stock"
-                                class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 text-gray-400">Stok</a>
+                                class="flex items-center {{ Request()->is('staffgudang/stock') ? 'bg-gray-700' : '' }}  w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 text-gray-400">Stok</a>
                         </li>
                     </ul>
                 </li>

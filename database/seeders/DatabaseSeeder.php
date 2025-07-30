@@ -25,14 +25,60 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         User::create([
-           "name"   =>    "seno",
+           "name"       =>    "seno",
            "email"      =>    "seno@gmail.com",
            "password"   =>     bcrypt('123')
+        ]);
+        User::create([
+           "name"       =>    "Rehan King Robloxx",
+           "email"      =>    "rehan@gmail.com",
+           "password"   =>     bcrypt('123'),
+           "role"       =>     "Staff gudang"
+        ]);
+        User::create([
+           "name"       =>    "Argi King Robloxx",
+           "email"      =>    "argi@gmail.com",
+           "password"   =>     bcrypt('123'),
+           "role"       =>     "Manajer gudang"
         ]);
 
         Property_app::create([
             "app_name"  =>   "Stokify",
             "app_image" =>   "image/logo.png"
+        ]);
+
+
+        Suppliers::create([
+              "name"     =>     "Argiii King Roblox",
+              "address"  =>    "Wanareja",
+              "phone"    =>    "08755357543",
+              "email"    =>    "argi9@gmail.com"
+        ]);
+        Suppliers::create([
+              "name"     =>     "Rehan King Robloxx",
+              "address"  =>    "langensari",
+              "phone"    =>    "078883478344",
+              "email"    =>    "rehan@gmail.com"
+        ]);
+        Suppliers::create([
+              "name"     =>     "Seno King Muncak roblox",
+              "address"  =>    "langensari",
+              "phone"    =>    "08212121",
+              "email"    =>    "seno@gmail.com"
+        ]);
+
+
+        Categories::create([
+           "name"          =>   "Elektronik",
+           "description"   =>   "Seputar Elektronik"
+        ]);
+        Categories::create([
+           "name"          =>   "Pakaian",
+           "description"   =>   "Seputar Pakaian"
+        ]);
+        Categories::create([
+           "name"          =>   "Aksesoris",
+           "description"   =>   "Seputar Aksesoris"
         ]);
 
     }

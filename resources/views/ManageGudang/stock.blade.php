@@ -44,7 +44,11 @@
 
          <div class="relative overflow-x-auto my-5">
      <h1 class="text-2xl my-3">Data Product</h1>
+     <div class="border-l-4 border-black rounded-md overflow-x-auto">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
              <tr>
               

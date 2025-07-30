@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
+|7
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+
+    // Admin Bisa Akses Semua Halaman,
 
     if (Auth::user()->role == "Admin") {
         return redirect('/admin/dashboard');
@@ -35,6 +37,10 @@ Route::get('/', function () {
      
 })->middleware('auth');
 
+
+// Export dan import Product
+Route::get('/product/export/', [ProductController::class, 'export'])->middleware('admin');
+Route::post('/import/product',[ProductController::class, 'import'])->middleware('admin');
 
 
 

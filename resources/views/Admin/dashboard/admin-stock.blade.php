@@ -22,44 +22,65 @@
                 </thead>
                 <tbody>
                     @foreach ($product as $p)
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                            <td scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $loop->iteration }}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{ $p->name }}
-                            </td>
+                        @php
+                            $stokM = $p->stock->where('type', 'masuk')->where('status', 'diterima')->sum('quantity');
+                            $stokK = $p->stock
+                                ->where('type', 'keluar')
+                                ->where('status', 'dikeluarkan')
+                                ->sum('quantity');
 
-                            @php
-                                $stokM = $p->stock
-                                    ->where('type', 'masuk')
-                                    ->where('status', 'diterima')
-                                    ->sum('quantity');
-                                $stokK = $p->stock
-                                    ->where('type', 'keluar')
-                                    ->where('status', 'dikeluarkan')
-                                    ->sum('quantity');
-
-                                $hasil = $stokM - $stokK;
-                            @endphp
-
-
-                            <td class="px-6 py-4">
-                                {{ $hasil  }}
-                            </td>
-                            @if ($hasil == 0)
-                            <td class="px-6 py-4">
-                                <a href="/stock/detail"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
-                            </td>
+                            $hasil = $stokM - $stokK;
+                        @endphp
+                        @if ($hasil <= $p->minimum_stock + 5)
+                            <tr class="bg-red-600 text-white border border-b-gray-300">
+                                <td scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ $loop->iteration }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $p->name }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $hasil }}
+                                </td>
+                                @if ($hasil == 0)
+                                    <td class="px-6 py-4">
+                                        <a href="/stock/detail"
+                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
+                                    </td>
                                 @else
-                            <td class="px-6 py-4">
-                                <a href="/stock/detail/{{ $p->slug }}"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
-                            </td>
-                            @endif
-                        </tr>
+                                    <td class="px-6 py-4">
+                                        <a href="/stock/detail/{{ $p->slug }}"
+                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
+                                    </td>
+                                @endif
+                            </tr>
+                        @else
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                                <td scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ $loop->iteration }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $p->name }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $hasil }}
+                                </td>
+
+                                @if ($hasil == 0)
+                                    <td class="px-6 py-4">
+                                        <a href="/stock/detail"
+                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
+                                    </td>
+                                @else
+                                    <td class="px-6 py-4">
+                                        <a href="/stock/detail/{{ $p->slug }}"
+                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
+                                    </td>
+                                @endif
+                            </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>

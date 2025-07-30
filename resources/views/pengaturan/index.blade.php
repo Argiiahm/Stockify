@@ -24,7 +24,13 @@
                     <label for="logo" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Logo saat
                         ini</label>
                     <div class="flex items-center">
-                        <img src="{{ asset('storage/' . $p->app_image) }}" alt="Logo" class="w-32 h-32">
+                        @php
+                            $imagePath = $property_app->app_image;
+                        @endphp
+                        <li class="flex justify-center">
+                            <img src="{{ Str::startsWith($imagePath, 'image/') ? asset($imagePath) : asset('storage/' . $imagePath) }}"
+                                alt="Logo" class="w-32">
+                        </li>
                         <input type="file" name="app_image" id="logo" value="{{ asset($p->app_image) }}"
                             class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4
                         file:rounded-md file:border-0 file:text-sm file:font-semibold

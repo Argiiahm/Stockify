@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProductExport;
+use App\Imports\ProductImport;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Suppliers;
@@ -9,6 +11,7 @@ use App\Models\Categories;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
@@ -60,10 +63,28 @@ class ProductController extends Controller
    }
 
    // Details
-   public function details(Product $product) {
-      return view('product.details-product.index',[
+   public function details(Product $product)
+   {
+      return view('product.details-product.index', [
          "product" => $product,
          "all"     =>  Product::all()
       ]);
+   }
+
+   public function export()
+   {
+      return Excel::download(new ProductExport, 'product.xlsx');
+   }
+
+   public function import(Request $request)
+   {
+
+      $request->validate([
+         "file"      =>     "required|mimes:xlsx,xls,csv"
+      ]);
+
+      Excel::import(new ProductImport, $request->file('file'));
+
+      return redirect('/admin/produk')->with('success', 'All good!');
    }
 }
