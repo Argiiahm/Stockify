@@ -83,8 +83,11 @@ class ProductController extends Controller
          "file"      =>     "required|mimes:xlsx,xls,csv"
       ]);
 
-      Excel::import(new ProductImport, $request->file('file'));
-
-      return redirect('/admin/produk')->with('success', 'All good!');
+      if (Excel::import(new ProductImport, $request->file('file'))) {
+         alert()->success('Berhasil Import Data');
+         return redirect('/admin/produk');
+      };
+      // alert()->warning('WarningAlert', 'Format File Tidak Benar!');
+      // return back();
    }
 }

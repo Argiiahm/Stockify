@@ -2,8 +2,8 @@
 @section('content')
     <div class="p-6 sm:ml-64">
         <div class="grid grid-cols-2">
-             <div class="bg-red-100">1</div>
-             <div class="">2</div>
+             {{-- <div class="bg-red-100">1</div>
+             <div class="">2</div> --}}
         </div>
         <div class="relative overflow-x-auto">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -15,6 +15,7 @@
                         <th scope="col" class="px-6 py-3">
                             Nama Barang
                         </th>
+                        
                         <th scope="col" class="px-6 py-3">
                             type
                         </th>

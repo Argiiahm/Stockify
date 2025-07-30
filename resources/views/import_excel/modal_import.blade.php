@@ -9,7 +9,7 @@
                 class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                     <div class="text-center">
-                        <p>Add Attributes</p>
+                        <p>Import Product</p>
                     </div>
 
                 </h3>
@@ -26,12 +26,10 @@
             </div>
 
 
-
             <div class="p-4 md:p-5">
                 <form action="/import/product" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload File
-                        Image</label>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload File</label>
                     <input
                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                          type="file" name="file">

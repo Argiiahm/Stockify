@@ -141,7 +141,7 @@
                         </button>
 
 
-                        <ul id="dropdown-m" class="hidden py-2 space-y-2">
+                        <ul id="dropdown-m" class="hidden py-2 space-y-2">  
                             <li>
                                 <a href="/management_gudang/dashboard"
                                     class="flex {{ Request()->is('management_gudang/dashboard') ? 'bg-gray-700' : '' }} items-center w-full p-2 text-gray-400 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Dashboard</a>
