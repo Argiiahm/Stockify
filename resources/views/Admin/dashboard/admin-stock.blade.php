@@ -3,6 +3,9 @@
 @section('content')
     <div class="p-6 sm:ml-64">
         <div class="relative overflow-x-auto">
+            <div class="bg-gray-800 text-white text-center text-2xl font-semibold py-3 rounded my-2">
+        Stock Opname
+    </div>
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>

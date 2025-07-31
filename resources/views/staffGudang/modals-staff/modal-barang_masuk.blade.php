@@ -29,7 +29,7 @@
                             <li>
                                 <span class="font-semibold text-gray-900 dark:text-white">{{ $s->product->name }} 
                                 </span> Total Masuk
-                                <span class="font-semibold text-gray-900 dark:text-white">{{ $s->quantity }}</span> , DiMasukan Oleh
+                                <span class="font-semibold text-gray-900 dark:text-white">{{ $s->quantity }}</span> ,Supplier:
                                 <span class="font-semibold text-gray-900 dark:text-white">{{ $s->product->suppliers->name}}</span>
                             </li>
                             @endif

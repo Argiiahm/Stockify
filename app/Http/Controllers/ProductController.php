@@ -23,6 +23,7 @@ class ProductController extends Controller
          "Product"     =>   Product::all(),
          "Categories"  =>   Categories::all(),
          "Suppliers"   =>   Suppliers::all()
+         // $lowStockProduct = Product::where('stok','<'',5)->get();
       ]);
    }
 

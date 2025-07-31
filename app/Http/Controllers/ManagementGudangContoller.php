@@ -16,23 +16,30 @@ class ManagementGudangContoller extends Controller
 {
     public function dashboard()
     {
-        $today = now()->toDateString();
-        $Data = Product::whereDate('created_at', $today)->get();
+
+        $today =  now()->toDateString();
+
+            $DataMasuk = Stock::whereDate('created_at', $today)->where('type', 'masuk')->where('status', 'diterima')->get();
+            $DataKeluar = Stock::whereDate('created_at', $today)->where('type', 'keluar')->where('status', 'dikeluarkan')->get( );
+            
+        // dd($DataMasuk);
         return view('ManageGudang.index', [
-            "DataToday"     =>   $Data,
-            // "Products"      =>   Product::all()
+            "stockMasuk"     =>   $DataMasuk,
+            "stockKeluar"    =>   $DataKeluar,
+            "product"        =>   Product::all()
         ]);
     }
 
     public function produk()
     {
-        return view('ManageGudang.produk',[
+        return view('ManageGudang.produk', [
             "product"     =>     Product::all()
         ]);
     }
 
-    public function detail(Product $product) {
-        return view('ManageGudang.details-product',[
+    public function detail(Product $product)
+    {
+        return view('ManageGudang.details-product', [
             "product"   =>    $product
         ]);
     }
@@ -52,7 +59,7 @@ class ManagementGudangContoller extends Controller
     {
         $allProduct = Product::all();
         $today = now()->toDateString();
-        
+
         $Data = Product::whereDate('created_at', $today)->get();
         return view('ManageGudang.stock', [
             "Product"   =>       Product::all(),
@@ -88,17 +95,8 @@ class ManagementGudangContoller extends Controller
             return back();
         }
 
-        // if(Stock::create($validasiData) && $validasiData['type'] === 'keluar' && $validasiData['quantity'] == $output < $product->minimum_stock + 5) {
-        //     alert()->success('Berhasil! , stock terisisa ' . $output);
-        //     return back();
-        // }elseif(Stock::create($validasiData) && $validasiData['type'] === 'keluar' && $validasiData['quantity'] == $output){
-        //     alert()->success('Berhasil!');
-        //     return back();
-        // }
-
         stock::create($validasiData);
         alert()->success('Berhasil!');
         return back();
-
     }
 }
