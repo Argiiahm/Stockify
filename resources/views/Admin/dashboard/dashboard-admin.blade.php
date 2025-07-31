@@ -32,14 +32,14 @@
                 <p class="text-2xl text-gray-400">Data Stok Masuk & Keluar</p>
             </div>
             <div class="bg-gray-800 p-4 rounded-md shadow-md">
-    <form action="/admin/dashboard/search" method="GET">
-        @csrf
-        <p class="text-gray-300 pb-2">Lihat Berdasarkan Bulan</p>
-        <input name="month" type="month" value="{{ Request('month') }}"
-               class="mb-2 p-2 rounded-md bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-400">
-        <button class="px-4 py-2 bg-green-500 text-white font-bold rounded-md" type="submit">Cari</button>
-    </form>
-</div>
+                <form action="/admin/dashboard/search" method="GET">
+                    @csrf
+                    <p class="text-gray-300 pb-2">Lihat Berdasarkan Bulan</p>
+                    <input name="month" type="month" value="{{ Request('month') }}"
+                        class="mb-2 p-2 rounded-md bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-400">
+                    <button class="px-4 py-2 bg-green-500 text-white font-bold rounded-md" type="submit">Cari</button>
+                </form>
+            </div>
 
         </div>
         <h1 class="font-bold text-gray-500">
@@ -73,7 +73,7 @@
                                     {{ $value }},
                                 @endforeach
                             ],
-                            backgroundColor: 'rgba(52, 105, 154)',
+                            backgroundColor: 'rgba(119, 190, 240)',
                             borderColor: 'rgba(173, 238, 217)',
                             borderWidth: 1
                         },
@@ -84,7 +84,7 @@
                                     {{ $value }},
                                 @endforeach
                             ],
-                            backgroundColor: 'rgba(177, 44, 0)',
+                            backgroundColor: 'rgba(239, 90, 111)',
                             borderColor: 'rgba(237, 53, 0)',
                             borderWidth: 1
                         }
@@ -106,4 +106,65 @@
                 }
             });
         </script>
-    @endsection
+
+
+        <div class="relative overflow-x-auto my-12">
+            <div class="bg-gray-800 text-white text-center text-2xl font-semibold py-3 rounded my-2">
+                Tabel Aktivitas User
+            </div>
+            <h1 class="my-2 text-gray-400">Hari: {{ now()->translatedformat('l') }}</h1>
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Name
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Role
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Action
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Aktivity
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Date
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Time
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($Activity as $a)
+                        @if ($a->created_at->addDay() > now())
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ $a->user->name }}
+                                </th>
+                                <td class="px-6 py-4">
+                                    {{ $a->user->role }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $a->action }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $a->activity }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $a->created_at->format('d F Y') }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $a->created_at->format('H:i:s') }}
+                                </td>
+                            </tr>
+                        @endif
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        {{ $Activity->links('pagination::simple-tailwind') }}
+    </div>
+@endsection

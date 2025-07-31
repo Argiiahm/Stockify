@@ -49,13 +49,13 @@ class DatabaseSeeder extends Seeder
 
 
         Suppliers::create([
-              "name"     =>     "Argiii King Roblox",
+              "name"     =>     "Argii",
               "address"  =>    "Wanareja",
               "phone"    =>    "08755357543",
               "email"    =>    "argi9@gmail.com"
         ]);
         Suppliers::create([
-              "name"     =>     "Rehan King Robloxx",
+              "name"     =>     "Rehan",
               "address"  =>    "langensari",
               "phone"    =>    "078883478344",
               "email"    =>    "rehan@gmail.com"

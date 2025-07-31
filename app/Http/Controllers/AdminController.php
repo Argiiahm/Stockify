@@ -8,11 +8,12 @@ use App\Models\Product;
 use App\Models\Attribute;
 use App\Models\Suppliers;
 use App\Models\Categories;
+use App\Models\UserActivity;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    
+
     public function index()
     {
         $count = Product::count();
@@ -28,12 +29,12 @@ class AdminController extends Controller
         }
 
         return view('Admin.dashboard.dashboard-admin', [
-            "count"   =>   $count,
-            "Product"  =>     Product::all(),
-            "stock"        => Stock::all(),
-            "stokMasuk"  =>  $stokMasuk,
-            "stokKeluar"  =>  $stokKeluar
-
+            "count"        =>    $count,
+            "Product"      =>    Product::all(),
+            "stock"        =>    Stock::all(),
+            "stokMasuk"    =>    $stokMasuk,
+            "stokKeluar"   =>    $stokKeluar,
+            "Activity"     =>    UserActivity::paginate(4)
         ]);
     }
 
@@ -96,6 +97,8 @@ class AdminController extends Controller
             "stock" => Stock::all(),
             "stokMasuk" => $stokMasuk,
             "stokKeluar" => $stokKeluar,
+            "Activity"     =>  UserActivity::paginate(4)
+
         ]);
     }
 

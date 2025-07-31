@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class UserActivity extends Model
 {
     use HasFactory;
+    protected $table = 'user_activities';
+    protected $guarded = [];
+
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

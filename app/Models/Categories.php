@@ -14,4 +14,32 @@ class Categories extends Model
     public function products() {
         return $this->hasMany(Product::class, 'category_id');
     }
+
+     protected static function booted()
+    {
+        static::created(function ($Category) {
+            UserActivity::create([
+                'user_id' => auth()->user()->id,
+                'action' => 'create',
+                'activity' => 'Membuat Category: ' . $Category->name
+            ]);
+        });
+
+        static::updated(function ($Category) {
+            UserActivity::create([
+                'user_id' => auth()->user()->id,
+                'action' => 'update',
+                'activity' => 'Mengubah Category: ' . $Category->name
+            ]);
+        });
+
+        static::deleted(function ($Category) {
+            UserActivity::create([
+                'user_id' => auth()->user()->id,
+                'action' => 'delete',
+                'activity' => 'Menghapus Category: ' . $Category->name
+            ]);
+        });
+    }
+
 }

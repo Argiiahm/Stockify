@@ -2,7 +2,9 @@
 
 @section('content')
     <div class="p-4 sm:ml-64">
-        <h1 class="text-4xl font-bold mb-6 text-gray-800 dark:text-white">Daftar Produk</h1>
+        <div class="bg-gray-800 text-white text-center text-2xl font-semibold py-2 rounded my-5">
+        Daftar Produk
+    </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             @foreach ($product as $p)

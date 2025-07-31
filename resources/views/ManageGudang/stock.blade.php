@@ -43,7 +43,9 @@
         @include('ManageGudang.modal-barang_keluar')
 
          <div class="relative overflow-x-auto my-5">
-     <h1 class="text-2xl my-3">Data Product</h1>
+    <div class="bg-gray-800 text-white text-center text-2xl font-semibold py-2 rounded my-2">
+     Data Product
+    </div>
      <div class="border-l-4 border-black rounded-md overflow-x-auto">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
