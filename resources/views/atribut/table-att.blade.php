@@ -34,7 +34,7 @@
                                             class="hover:underline bg-red-500 hover:bg-orange-150 text-white font-bold py-1 px-3 rounded">Delete</button>
                                     </form>
                                     <a class="bg-green-500 hover:bg-orange-600 text-white font-bold py-1 px-6 rounded"
-                                        href="/">Edit</a>
+                                        href="/attribute/edit/{{ $c->id }}">Edit</a>
                                 </td>
                             </tr>
                         @endforeach

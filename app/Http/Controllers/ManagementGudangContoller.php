@@ -50,11 +50,16 @@ class ManagementGudangContoller extends Controller
             "Suppliers"   => Suppliers::all()
         ]);
     }
-    public function laporan()
+    public function laporan(Request $request)
     {
+
+
+        // $bulan = now()->toDateString();
+
         return view('ManageGudang.laporan', [
             "categories"    =>    Categories::all(),
-            "category"      =>    Categories::withcount('products')->get()
+            "category"      =>    Categories::withcount('products')->get(),
+            "DataStock"     =>    Product::all(),
         ]);
     }
 
@@ -65,7 +70,41 @@ class ManagementGudangContoller extends Controller
         return view('laporan.laporan-by_category', [
             "data"     =>     $categories,
             "product"  =>     $product,
+        ]); {
+        }
+    }
+
+
+    public function searchlaporan(Request $request)
+    {
+
+        $request->validate([
+            'month' => 'required|date_format:Y-m',
         ]);
+
+        // dd($request->month);
+
+        [$tahun, $bulan] = explode('-', $request->month);
+
+        $stokMasuk = [];
+        $stokKeluar = [];
+        $product = Product::all();
+
+        foreach ($product as $p) {
+            $stokMasuk[] = $p->stock()
+                ->where('type', 'masuk')
+                ->where('status', 'diterima')
+                ->whereMonth('created_at', $bulan)
+                ->whereYear('created_at', $tahun)
+                ->sum('quantity');
+
+            $stokKeluar[] = $p->stock()
+                ->where('type', 'keluar')
+                ->where('status', 'dikeluarkan')
+                ->whereMonth('created_at', $bulan)
+                ->whereYear('created_at', $tahun)
+                ->sum('quantity');
+        }
     }
 
     public function stock()

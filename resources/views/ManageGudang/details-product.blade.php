@@ -11,8 +11,16 @@
                     src="{{ asset('storage/' . $product->image) }}">
                 <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                     <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ $product->name }}</h1>
-                    <h2 class="text-sm title-font text-gray-500 tracking-widest">{{ $product->description }}</h2>
-                    <span class="title-font font-medium text-2xl text-gray-600">Rp. {{ $product->selling_price }}</span>
+                    <h2 class="text-sm title-font text-gray-500 tracking-widest">Supplier by: 
+                        {{ $product->suppliers->name }} </h2>
+                    <h2 class="text-sm title-font text-gray-500 tracking-widest">Description: {{ $product->description }}</h2>
+                    <div class="flex items-center gap-2">
+                        <h2 class="text-sm title-font text-gray-500 tracking-widest">
+                            {{ $product->attributes->first()->name ?? 'No Attribute' }}: </h2>
+                        <h2 class="text-sm title-font text-gray-500 tracking-widest">   
+                            {{ $product->attributes->first()->value ?? '-' }}</h2>
+                    </div>
+                    <span class="title-font font-medium text-2xl text-gray-600">Selling Price:  Rp. {{ $product->selling_price }}</span>
                 </div>
             </div>
         </div>

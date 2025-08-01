@@ -111,7 +111,7 @@
         <div class="relative overflow-x-auto my-12">
             <div class="bg-gray-800 text-white text-center text-2xl font-semibold py-3 rounded my-2">
                 <div class="flex justify-between items-center px-10 pb-4">
-                    <p>Tabel Aktivitas User</p>
+                    Tabel Aktivitas User
                     <h1 class="my-2 text-gray-400"> {{ now()->translatedformat('l') }}</h1>
                 </div>
 

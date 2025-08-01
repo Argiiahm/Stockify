@@ -113,8 +113,6 @@ class AdminController extends Controller
             "stokMasuk" => $stokMasuk,
             "stokKeluar" => $stokKeluar,
             "Activity"     => UserActivity::whereDate('created_at', $today)->get(),
-
-
         ]);
     }
 
@@ -124,7 +122,7 @@ class AdminController extends Controller
 
         $count = Product::count();
         return view('Admin.admin-product', [
-            "Product"  =>     Product::paginate(4),
+            "Product"  =>     Product::all(),
             "Suppliers"  =>   Suppliers::all(),
             "Categories"  =>  Categories::all(),
             "Attribute"   =>   Attribute::all(),

@@ -56,20 +56,22 @@
 
         </div>
 
-        {{-- Table Produk --}}
+        @include('atribut.table-att')
+        
         <div class="flex items-center mt-4 gap-2 justify-between">
             <h1 class="text-2xl my-3">Data Product</h1>
             <div class="flex gap-3 items-center">
                 <a class="bg-orange-500 px-3 py-1 rounded-lg text-white" href="/product/export/">Export</a>
-                <button data-modal-target="import" data-modal-toggle="import" class="bg-green-500 px-3 py-1 rounded-lg text-white" href="/product/import/">Import</button>
-            </div>  
+                <button data-modal-target="import" data-modal-toggle="import"
+                    class="bg-green-500 px-3 py-1 rounded-lg text-white" href="/product/import/">Import</button>
+            </div>
         </div>
         @include('product.table-product')
 
 
+        {{-- Table Produk --}}
 
         {{-- Tabel Categories dan attributes --}}
-        @include('atribut.table-att')
         @include('import_excel.modal_import')
 
     </div>

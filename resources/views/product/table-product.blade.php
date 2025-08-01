@@ -42,5 +42,5 @@
             @endforeach
          </tbody>
      </table>
-     {{ $Product->links('pagination::simple-tailwind') }}
+     {{-- {{ $Product->links('pagination::simple-tailwind') }} --}}
  </div>

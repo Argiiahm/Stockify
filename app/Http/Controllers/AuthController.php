@@ -57,7 +57,7 @@ class AuthController extends Controller
         } else {
             return back();
         }
-    }
+    }   
 
     public function edit(User $pengguna)
     {

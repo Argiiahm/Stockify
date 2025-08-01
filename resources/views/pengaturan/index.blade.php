@@ -5,7 +5,9 @@
 
         {{-- Form Pengaturan --}}
         <div class="max-w-3xl my-20 mx-auto p-6 bg-white rounded-lg shadow-md dark:bg-gray-800">
-            <h2 class="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">Pengaturan Aplikasi</h2>
+            <div class="bg-gray-800 text-white text-center text-2xl font-semibold py-2 rounded my-2">
+                Pengaturan Aplikasi
+            </div>
 
             <form action="/pengaturan/update/{{ $p->id }}" method="POST" enctype="multipart/form-data">
                 @csrf
