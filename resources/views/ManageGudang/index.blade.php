@@ -4,7 +4,7 @@
     <div class="p-4 sm:ml-64">
 
         <div class="relative overflow-x-auto my-20">
-            <div class="bg-gray-800 text-white text-center text-2xl font-semibold py-3 rounded my-2 ">
+            <div class="bg-gray-800 text-white text-center text-2xl font-semibold py-2 rounded my-2 ">
                 Daftar Stock Menipis
             </div>
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -46,7 +46,7 @@
 
         {{-- table barang masuk --}}
         <div class="relative overflow-x-auto my-10">
-            <div class="bg-gray-800 text-white text-center text-2xl font-semibold py-3 rounded my-2">
+            <div class="bg-gray-800 text-white px-4 text-2xl font-semibold py-2 rounded my-2">
                 Barang Masuk
             </div>
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -79,11 +79,11 @@
                         </tr>
                     @endforeach
                 </tbody>
-            </table>
+        </table>
         </div>
         {{-- Table Barang Keluar --}}
         <div class="relative overflow-x-auto">
-            <div class="bg-gray-800 text-white text-center text-2xl font-semibold py-3 rounded my-2">
+            <div class="bg-gray-800 text-white px-4 text-2xl font-semibold py-2 rounded my-2">
                 Barang Keluar
             </div>
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

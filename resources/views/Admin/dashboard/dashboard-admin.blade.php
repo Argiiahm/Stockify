@@ -110,35 +110,36 @@
 
         <div class="relative overflow-x-auto my-12">
             <div class="bg-gray-800 text-white text-center text-2xl font-semibold py-3 rounded my-2">
-                Tabel Aktivitas User
-            </div>
-            <h1 class="my-2 text-gray-400">Hari: {{ now()->translatedformat('l') }}</h1>
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            Name
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Role
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Action
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Aktivity
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Date
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Time
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($Activity as $a)
-                        @if ($a->created_at->addDay() > now())
+                <div class="flex justify-between items-center px-10 pb-4">
+                    <p>Tabel Aktivitas User</p>
+                    <h1 class="my-2 text-gray-400"> {{ now()->translatedformat('l') }}</h1>
+                </div>
+
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Role
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Action
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Aktivity
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Date
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Time
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($Activity as $a)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -160,11 +161,10 @@
                                     {{ $a->created_at->format('H:i:s') }}
                                 </td>
                             </tr>
-                        @endif
-                    @endforeach
-                </tbody>
-            </table>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            {{-- {{ $Activity->links('pagination::simple-tailwind') }} --}}
         </div>
-        {{ $Activity->links('pagination::simple-tailwind') }}
-    </div>
-@endsection
+    @endsection

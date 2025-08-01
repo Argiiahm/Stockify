@@ -11,17 +11,19 @@ class Stock extends Model
     protected $table = 'stocks';
     protected $guarded = [];
 
-    public function product() {
+    public function product()
+    {
         return $this->belongsTo(Product::class, 'product_id');
     }
 
-    public function users() {
+    public function users()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 
 
 
-         protected static function booted()
+    protected static function booted()
     {
         static::created(function ($Stock) {
             UserActivity::create([
@@ -47,5 +49,4 @@ class Stock extends Model
             ]);
         });
     }
-
 }

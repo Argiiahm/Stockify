@@ -19,9 +19,9 @@ class ManagementGudangContoller extends Controller
 
         $today =  now()->toDateString();
 
-            $DataMasuk = Stock::whereDate('created_at', $today)->where('type', 'masuk')->where('status', 'diterima')->get();
-            $DataKeluar = Stock::whereDate('created_at', $today)->where('type', 'keluar')->where('status', 'dikeluarkan')->get( );
-            
+        $DataMasuk = Stock::whereDate('created_at', $today)->where('type', 'masuk')->where('status', 'diterima')->get();
+        $DataKeluar = Stock::whereDate('created_at', $today)->where('type', 'keluar')->where('status', 'dikeluarkan')->get();
+
         // dd($DataMasuk);
         return view('ManageGudang.index', [
             "stockMasuk"     =>   $DataMasuk,
@@ -52,7 +52,20 @@ class ManagementGudangContoller extends Controller
     }
     public function laporan()
     {
-        return view('ManageGudang.laporan');
+        return view('ManageGudang.laporan', [
+            "categories"    =>    Categories::all(),
+            "category"      =>    Categories::withcount('products')->get()
+        ]);
+    }
+
+    // Laporan
+    public function laporan_by_category(Categories $categories)
+    {
+        $product = Product::where('category_id', $categories->id)->get();
+        return view('laporan.laporan-by_category', [
+            "data"     =>     $categories,
+            "product"  =>     $product,
+        ]);
     }
 
     public function stock()
@@ -74,11 +87,11 @@ class ManagementGudangContoller extends Controller
     {
         $validasiData = $request->validate([
             "product_id" => "required|exists:products,id",
-            "type" => "required|in:masuk,keluar",
-            "quantity" => "required|integer|min:1",
-            "date" => "required|date",
-            "status" => "required|in:pending,diterima,ditolak,dikeluarkan",
-            "note"   =>  "nullable"
+            "type"       => "required|in:masuk,keluar",
+            "quantity"   => "required|integer|min:1",
+            "date"       => "required|date",
+            "status"     => "required|in:pending,diterima,ditolak,dikeluarkan",
+            "note"       => "nullable"
         ]);
 
         $validasiData['user_id'] = Auth::id();

@@ -21,11 +21,21 @@ class AdminController extends Controller
         $stokKeluar = [];
         $product = Product::all();
 
+        [$tahun, $bulan] = explode('-', now()->format('Y-m'));
+
+
 
         foreach ($product as $p) {
 
-            $stokMasuk[] = $p->stock()->where('type', 'masuk')->where('status', 'diterima')->sum('quantity');
-            $stokKeluar[] = $p->stock()->where('type', 'keluar')->where('status', 'dikeluarkan')->sum('quantity');
+            $today = now()->toDateString();
+
+            $stokMasuk[] = $p->stock()->where('type', 'masuk')->where('status', 'diterima')
+                ->whereMonth('created_at', $bulan)
+                ->whereYear('created_at', $tahun)->sum('quantity');
+
+            $stokKeluar[] = $p->stock()->where('type', 'keluar')->where('status', 'dikeluarkan')
+                ->whereMonth('created_at', $bulan)
+                ->whereYear('created_at', $tahun)->sum('quantity');
         }
 
         return view('Admin.dashboard.dashboard-admin', [
@@ -34,7 +44,8 @@ class AdminController extends Controller
             "stock"        =>    Stock::all(),
             "stokMasuk"    =>    $stokMasuk,
             "stokKeluar"   =>    $stokKeluar,
-            "Activity"     =>    UserActivity::paginate(4)
+            "Activity"     =>    UserActivity::whereDate('created_at', $today)->get(),
+
         ]);
     }
 
@@ -69,11 +80,15 @@ class AdminController extends Controller
             'month' => 'required|date_format:Y-m',
         ]);
 
+        // dd($request->month);
+
         [$tahun, $bulan] = explode('-', $request->month);
 
         $stokMasuk = [];
         $stokKeluar = [];
         $product = Product::all();
+
+        $today = now()->toDateString();
 
         foreach ($product as $p) {
             $stokMasuk[] = $p->stock()
@@ -93,15 +108,15 @@ class AdminController extends Controller
 
         return view('Admin.dashboard.dashboard-admin', [
             "count" => Product::count(),
-            "Product" => Product::paginate(4),
+            "Product" => Product::all(),
             "stock" => Stock::all(),
             "stokMasuk" => $stokMasuk,
             "stokKeluar" => $stokKeluar,
-            "Activity"     =>  UserActivity::paginate(4)
+            "Activity"     => UserActivity::whereDate('created_at', $today)->get(),
+
 
         ]);
     }
-
 
 
     public function product()

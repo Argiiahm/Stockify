@@ -112,6 +112,9 @@ Route::get('/management_gudang/stock', [ManagementGudangContoller::class, 'stock
 Route::get('/management_gudang/supplier', [ManagementGudangContoller::class, 'supplier'])->middleware('admin_gudang');
 Route::get('/management_gudang/laporan', [ManagementGudangContoller::class, 'laporan'])->middleware('admin_gudang');
 
+// Laporan Manajemen
+Route::get('/laporan/stock/m/{categories:name}',[ManagementGudangContoller::class, 'laporan_by_category'])->middleware('admin_gudang');
+
 //Management Gudang -- Transaksi Stok Masuk Dan Keluar
 Route::post('/transaksi/stock', [ManagementGudangContoller::class, 'tfStock'])->middleware('admin_gudang');
 Route::get('/transaksi/stock/edit/{stock:id}', [ManagementGudangContoller::class, 'editStock'])->middleware('admin_gudang');
