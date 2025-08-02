@@ -45,15 +45,7 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                             required />
                     </div>
-                    <select name="status" id="status"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:text-white"
-                        required>
-                        <option value="" selected disabled>Status</option>
-                        <option value="pending">Pending</option>
-                        {{-- <option value="diterima">Diterima</option>
-                        <option value="ditolak">Di Tolak</option>
-                        <option value="dikeluarkan">Di Keluarkan</option> --}}
-                    </select>
+                    <input type="text" name="status" value="pending" hidden>
                     <div>
                         <label for="Date"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>

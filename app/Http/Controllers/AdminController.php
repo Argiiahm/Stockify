@@ -116,7 +116,6 @@ class AdminController extends Controller
         ]);
     }
 
-
     public function product()
     {
 
@@ -145,6 +144,31 @@ class AdminController extends Controller
         return view('Admin.dashboard.admin-pengguna', [
             "count"   =>   $count,
             "Users"   =>    User::all()
+        ]);
+    }
+
+    public function laporan()
+    {
+        $DataMasuk = Stock::where('type', 'masuk')->where('status', 'diterima')->get();
+        $DataKeluar = Stock::where('type', 'keluar')->where('status', 'dikeluarkan')->get();
+
+        return view('Admin.laporan.index', [
+            "categories"    =>    Categories::all(),
+            "category"      =>    Categories::withcount('products')->get(),
+            "DataStock"     =>    Product::all(),
+            "actv"          =>    UserActivity::latest()->get(),
+            "stockMasuk"     =>   $DataMasuk,
+            "stockKeluar"    =>   $DataKeluar
+        ]);
+    }
+
+    // Laporan
+    public function laporan_by_category(Categories $categories)
+    {
+        $product = Product::where('category_id', $categories->id)->get();
+        return view('laporan.laporan-by_category', [
+            "data"     =>     $categories,
+            "product"  =>     $product,
         ]);
     }
 }
