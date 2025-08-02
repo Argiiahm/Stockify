@@ -30,7 +30,7 @@
                     $bulanUnik[$bulan] = date('F Y', strtotime($s->created_at));
                 }
             }
-
+            
             krsort($bulanUnik);
         @endphp
 
@@ -38,7 +38,7 @@
         <div class="bg-gray-800 text-white text-center text-2xl font-semibold py-2 rounded my-2">{{ $namaBulan }}
                 
             </div>
-        
+            
             <div class="overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 mb-10">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -47,7 +47,7 @@
                             <th scope="col" class="px-6 py-3">Stok Akhir</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody> 
                         @foreach ($DataStock as $d)
                             @php
                                 $stokM = $d->stock
@@ -67,6 +67,7 @@
                                     ->sum('quantity');
 
                                 $output = $stokM - $stokK;
+
                             @endphp
 
                             @if ($output != 0)

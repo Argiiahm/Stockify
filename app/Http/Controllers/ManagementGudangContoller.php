@@ -94,7 +94,7 @@ class ManagementGudangContoller extends Controller
             "quantity"   => "required|integer|min:1",
             "date"       => "required|date",
             "status"     => "required|in:pending,diterima,ditolak,dikeluarkan",
-            "note"       => "nullable"
+            "note"       => "nullable|string"
         ]);
 
         $validasiData['user_id'] = Auth::id();

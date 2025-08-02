@@ -24,29 +24,25 @@ class Stock extends Model
 
 
     protected static function booted()
-    {
-        static::created(function ($Stock) {
-            UserActivity::create([
-                'user_id' => auth()->user()->id,
-                'action' => 'menambahkan',
-                'activity' => 'menambahkan Stock: ' . $Stock->product->name
-            ]);
-        });
+    { 
+        static::saved(function ($Stock) {
+            if (!auth()->check()) return;
 
-        // static::updated(function ($Stock) {
-        //     UserActivity::create([
-        //         'user_id' => auth()->user()->id,
-        //         'action' => 'update',
-        //         'activity' => 'Mengubah Stock: ' . $Stock->name
-        //     ]);
-        // });
+            $productName = $Stock->product->name;
 
-        static::deleted(function ($Stock) {
-            UserActivity::create([
-                'user_id' => auth()->user()->id,
-                'action' => 'dikeluarkan',
-                'activity' => ' barang keluar: ' . $Stock->product->name
-            ]);
+            if ($Stock->status === 'diterima') {
+                UserActivity::create([
+                    'user_id' => auth()->id(),
+                    'action' => 'menambahkan',
+                    'activity' => 'menambahkan Stock: ' . $productName
+                ]);
+            } elseif ($Stock->status === 'dikeluarkan') { 
+                UserActivity::create([
+                    'user_id' => auth()->id(),
+                    'action' => 'dikeluarkan',
+                    'activity' => 'barang keluar: ' . $productName
+                ]);
+            }
         });
     }
 }

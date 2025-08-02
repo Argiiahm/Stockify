@@ -1,4 +1,4 @@
- <div class="relative overflow-x-------auto my-5 p-4 sm:ml-64">
+<div class="relative overflow-x-------auto my-5 p-4 sm:ml-64">
     <div class="bg-gray-800 text-white text-center text-2xl font-semibold py-2 rounded my-2">
      Daftar Barang ( Pending )
     </div>
