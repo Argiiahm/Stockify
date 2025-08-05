@@ -21,10 +21,10 @@
                      <td class="py-2">{{ $c->name }}</td>
                      <td>{{ $c->description }}</td>
                      <td class="flex items-center gap-2 py-2">
-                         <form action="/category/{{ $c->id }}" method="POST">
+                         <form id="form-delete" action="/category/{{ $c->id }}" method="POST">
                              @csrf
                              @method('DELETE')
-                             <button onclick="return confirm('Apakah Anda Yakin?')" type="submit"
+                             <button onclick="ConfirmHapus()" type="button"
                                  class="hover:underline bg-red-500 hover:bg-orange-150 text-white font-bold py-1 px-3 rounded">Delete</button>
                          </form>
                             <a class="bg-green-500 hover:bg-orange-600 text-white font-bold py-1 px-6 rounded" href="/category/edit/{{ $c->id }}">Edit</a>

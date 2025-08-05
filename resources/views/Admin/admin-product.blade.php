@@ -66,7 +66,7 @@
                     class="bg-green-500 px-3 py-1 rounded-lg text-white" href="/product/import/">Import</button>
             </div>
         </div>
-        @include('product.table-product')
+        @include('product.table-product') 
 
 
         {{-- Table Produk --}}

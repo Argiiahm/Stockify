@@ -5,9 +5,11 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Categories;
+use App\Models\Product;
 use App\Models\Property_app;
 use App\Models\Suppliers;
 use App\Models\User;
+use App\Models\UserActivity;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -47,7 +49,6 @@ class DatabaseSeeder extends Seeder
             "app_image" =>   "image/logo.png"
         ]);
 
-
         Suppliers::create([
               "name"     =>     "Argii",
               "address"  =>    "Wanareja",
@@ -80,6 +81,12 @@ class DatabaseSeeder extends Seeder
            "name"          =>   "Aksesoris",
            "description"   =>   "Seputar Aksesoris"
         ]);
+
+      //   UserActivity::create([
+      //      "user_id"  =>    1,
+      //      "action"   =>   "Migrate Fresh",
+      //      "activity" =>    "Migrate"
+      //   ]);
 
     }
 }

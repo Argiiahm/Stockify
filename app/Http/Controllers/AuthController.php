@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class AuthController extends Controller
 {
@@ -23,18 +25,13 @@ class AuthController extends Controller
 
         // dd(Auth::attempt($vd));
 
-        Auth::attempt($vd);
-        return redirect('/');
-
-        // if (Auth::attempt($vd)) {
-        //     if (Auth::user()->role == "Admin") {
-        //         return redirect('/admin/dashboard');
-        //     } elseif (Auth::user()->role == "Manajer gudang") {
-        //         return redirect('/management_gudang/dashboard');
-        //     }elseif(Auth::user()->role == "Staff gudang") {
-        //         return redirect('/staffgudang/dashboard');
-        //     }
-        // }
+        if (Auth::attempt($vd)) {
+            Alert::toast('Berhasil', 'success');
+            return redirect('/');
+        } else {
+            Alert::toast('Login gagal. Cek email & password.', 'error');
+            return back()->withInput();
+        }
     }
 
 
@@ -57,7 +54,7 @@ class AuthController extends Controller
         } else {
             return back();
         }
-    }   
+    }
 
     public function edit(User $pengguna)
     {
@@ -97,6 +94,7 @@ class AuthController extends Controller
     {
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        Alert::toast('Logout Berhasil', 'success');
+        return redirect('/login');
     }
 }

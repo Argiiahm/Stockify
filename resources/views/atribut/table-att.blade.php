@@ -27,10 +27,10 @@
                                 <td>{{ $c->product->name }}</td>
                                 <td>{{ $c->value }}</td>
                                 <td class="flex items-center gap-2 py-2 justify-center">
-                                    <form action="/attribute/delete/{{ $c->id }}" method="POST">
+                                    <form id="form-delete-Att" action="/attribute/delete/{{ $c->id }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button onclick="return confirm('Apakah Anda Yakin?')" type="submit"
+                                        <button onclick="ConfirmHapusAtt()" type="button"
                                             class="hover:underline bg-red-500 hover:bg-orange-150 text-white font-bold py-1 px-3 rounded">Delete</button>
                                     </form>
                                     <a class="bg-green-500 hover:bg-orange-600 text-white font-bold py-1 px-6 rounded"

@@ -47,7 +47,7 @@
 
         <div class="relative overflow-x-auto my-10">
             <div class="bg-gray-800 text-white text-center px-4 text-2xl font-semibold py-2 rounded my-2">
-                Barang Masuk
+                Barang Masuk Hari Ini
             </div>
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -84,14 +84,14 @@
         {{-- Table Barang Keluar --}}
         <div class="relative overflow-x-auto">
             <div class="bg-gray-800 text-white text-center px-4 text-2xl font-semibold py-2 rounded my-2">
-                Barang Keluar
+                Barang Keluar Hari Ini
             </div>
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
                             Nama Produk
-                        </th>
+                        </th>  
                         <th scope="col" class="px-6 py-3">
                             Jumlah Produk
                         </th>

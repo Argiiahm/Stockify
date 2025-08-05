@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Product extends Model
 {
@@ -31,7 +32,8 @@ class Product extends Model
         return $this->hasMany(Stock::class, 'product_id');
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->hasMany(User::class, 'user_id');
     }
 
@@ -39,11 +41,13 @@ class Product extends Model
     protected static function booted()
     {
         static::created(function ($product) {
-            UserActivity::create([
-                'user_id' => auth()->user()->id,
-                'action' => 'create',
-                'activity' => 'Membuat Produk: ' . $product->name
-            ]);
+            if (Auth::check()) {
+                UserActivity::create([
+                    'user_id' => auth()->user()->id,
+                    'action' => 'create',
+                    'activity' => 'Membuat Produk: ' . $product->name
+                ]);
+            }
         });
 
         // static::updated(function ($product) {

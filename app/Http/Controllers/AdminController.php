@@ -24,10 +24,9 @@ class AdminController extends Controller
         [$tahun, $bulan] = explode('-', now()->format('Y-m'));
 
 
-
+        $today = now()->toDateString();
         foreach ($product as $p) {
 
-            $today = now()->toDateString();
 
             $stokMasuk[] = $p->stock()->where('type', 'masuk')->where('status', 'diterima')
                 ->whereMonth('created_at', $bulan)
@@ -83,7 +82,6 @@ class AdminController extends Controller
         // dd($request->month);
 
         [$tahun, $bulan] = explode('-', $request->month);
-
         $stokMasuk = [];
         $stokKeluar = [];
         $product = Product::all();
@@ -107,11 +105,11 @@ class AdminController extends Controller
         }
 
         return view('Admin.dashboard.dashboard-admin', [
-            "count" => Product::count(),
-            "Product" => Product::all(),
-            "stock" => Stock::all(),
-            "stokMasuk" => $stokMasuk,
-            "stokKeluar" => $stokKeluar,
+            "count"        => Product::count(),
+            "Product"      => Product::all(),
+            "stock"        => Stock::all(),
+            "stokMasuk"    => $stokMasuk,
+            "stokKeluar"   => $stokKeluar,
             "Activity"     => UserActivity::whereDate('created_at', $today)->get(),
         ]);
     }
@@ -121,11 +119,11 @@ class AdminController extends Controller
 
         $count = Product::count();
         return view('Admin.admin-product', [
-            "Product"  =>     Product::all(),
-            "Suppliers"  =>   Suppliers::all(),
+            "Product"     =>     Product::all(),
+            "Suppliers"   =>   Suppliers::all(),
             "Categories"  =>  Categories::all(),
             "Attribute"   =>   Attribute::all(),
-            "count"   =>   $count,
+            "count"       =>   $count,
         ]);
     }
 
@@ -153,14 +151,14 @@ class AdminController extends Controller
         $DataKeluar = Stock::where('type', 'keluar')->where('status', 'dikeluarkan')->get();
 
         return view('Admin.laporan.index', [
-            "categories"    =>    Categories::all(),
-            "category"      =>    Categories::withcount('products')->get(),
-            "DataStock"     =>    Product::all(),
-            "actv"          =>    UserActivity::latest()->get(),
+            "categories"     =>    Categories::all(),
+            "category"       =>    Categories::withcount('products')->get(),
+            "DataStock"      =>    Product::all(),
+            "actv"           =>    UserActivity::latest()->get(),
             "stockMasuk"     =>   $DataMasuk,
             "stockKeluar"    =>   $DataKeluar
         ]);
-    }
+    }   
 
     // Laporan
     public function laporan_by_category(Categories $categories)

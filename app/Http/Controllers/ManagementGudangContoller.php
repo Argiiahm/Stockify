@@ -52,10 +52,14 @@ class ManagementGudangContoller extends Controller
     }
     public function laporan()
     {
+        $DataMasuk = Stock::where('type', 'masuk')->where('status', 'diterima')->get();
+        $DataKeluar = Stock::where('type', 'keluar')->where('status', 'dikeluarkan')->get();
         return view('ManageGudang.laporan', [
             "categories"    =>    Categories::all(),
             "category"      =>    Categories::withcount('products')->get(),
             "DataStock"     =>    Product::all(),
+            "stockMasuk"     =>   $DataMasuk,
+            "stockKeluar"    =>   $DataKeluar
         ]);
     }
 
@@ -70,7 +74,7 @@ class ManagementGudangContoller extends Controller
         }
     }
 
-    
+
     public function stock()
     {
         $allProduct = Product::all();

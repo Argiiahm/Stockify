@@ -11,36 +11,42 @@ class Suppliers extends Model
     protected $table = 'suppliers';
     protected $guarded = [];
 
-    public function products() {
+    public function products()
+    {
         return $this->hasMany(Product::class, 'supplier_id');
     }
 
 
-         protected static function booted()
+    protected static function booted()
     {
         static::created(function ($Supplier) {
-            UserActivity::create([
-                'user_id' => auth()->user()->id,
-                'action' => 'create',
-                'activity' => 'Membuat Supplier: ' . $Supplier->name
-            ]);
+            if (auth()->check()) {
+                UserActivity::create([
+                    'user_id' => auth()->user()->id,
+                    'action' => 'create',
+                    'activity' => 'Membuat Supplier: ' . $Supplier->name
+                ]);
+            }
         });
 
         static::updated(function ($Supplier) {
-            UserActivity::create([
-                'user_id' => auth()->user()->id,
-                'action' => 'update',
-                'activity' => 'Mengubah Supplier: ' . $Supplier->name
-            ]);
+            if (auth()->check()) {
+                UserActivity::create([
+                    'user_id' => auth()->user()->id,
+                    'action' => 'update',
+                    'activity' => 'Mengubah Supplier: ' . $Supplier->name
+                ]);
+            }
         });
 
         static::deleted(function ($Supplier) {
-            UserActivity::create([
-                'user_id' => auth()->user()->id,
-                'action' => 'delete',
-                'activity' => 'Menghapus Supplier: ' . $Supplier->name
-            ]);
+            if (auth()->check()) {
+                UserActivity::create([
+                    'user_id' => auth()->user()->id,
+                    'action' => 'delete',
+                    'activity' => 'Menghapus Supplier: ' . $Supplier->name
+                ]);
+            }
         });
     }
-
 }

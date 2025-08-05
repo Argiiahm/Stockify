@@ -16,6 +16,8 @@
 <link rel="stylesheet" type="text/css"
     href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 <body>
 
@@ -56,20 +58,20 @@
                 {{-- Admin Route --}}
                 @if (Auth::user()->role == 'Admin')
                     <li>
-                         <button type="button"
-                        class="flex items-center w-full p-2 text-base bg-gray-700 text-white transition duration-75 rounded-lg group hover:bg-gray-600"
-                        aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                        <button type="button"
+                            class="flex items-center w-full p-2 text-base bg-gray-700 text-white transition duration-75 rounded-lg group hover:bg-gray-600"
+                            aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
 
-                        <i class="ph ph-identification-card text-white"></i>
+                            <i class="ph ph-identification-card text-white"></i>
 
-                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Admin</span>
+                            <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Admin</span>
 
-                        <svg class="w-3 h-3 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m1 1 4 4 4-4" />
-                        </svg>
-                    </button>
+                            <svg class="w-3 h-3 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
 
 
                         <ul id="dropdown-example" class="hidden py-2 space-y-2">
@@ -141,8 +143,8 @@
                         </button>
 
 
-                        
-                        <ul id="dropdown-m" class="hidden py-2 space-y-2">  
+
+                        <ul id="dropdown-m" class="hidden py-2 space-y-2">
                             <li>
                                 <a href="/management_gudang/dashboard"
                                     class="flex {{ Request()->is('management_gudang/dashboard') ? 'bg-gray-700' : '' }} items-center w-full p-2 text-gray-400 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Dashboard</a>
@@ -210,35 +212,11 @@
                         </li>
                     </ul>
                 </li>
-            </ul>
-        </div>
-    </aside>
-    <div class="p-4 sm:ml-64">
-        <nav class="border-gray-200 rounded-md shadow-md bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <span
-                    class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white flex items-center gap-3">
-                    @if (Auth::user()->role == 'Admin')
-                        {{ $property_app->app_name }}<span
-                            class="tracking-wider flex gap-2 items-center text-white bg-blue-500 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold"
-                            title="">
-                            <i class="fas fa-star" aria-hidden="true"></i>{{ Auth::user()->role }}</span>
-                    @elseif (Auth::user()->role == 'Manajer gudang')
-                        <span
-                            class="tracking-wider flex items-center gap-2 text-white bg-orange-500 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold"
-                            title="">
-                            <i class="fas fa-heart" aria-hidden="true"></i>{{ Auth::user()->role }}
-                        </span>
-                    @elseif (Auth::user()->role == 'Staff gudang')
-                        <span
-                            class="tracking-wider text-white bg-green-500 flex items-center gap-2 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold"
-                            title="">
-                            <i class="fas fa-award" aria-hidden="true"></i>{{ Auth::user()->role }}
-                        </span>
-                    @endif
-                </span>
-                <div class="flex items-center gap-5">
-                    <p class="font-semibold whitespace-nowrap dark:text-white">{{ Auth::user()->name }}</p>
+                <li class="block lg:hidden md:hidden">
+                    <p class="font-semibold md:block whitespace-nowrap text-zinc-500">
+                        {{ Auth::user()->name }}</p>
+                </li>
+                <li class="block lg:hidden md:hidden">
                     @if (Auth::check())
                         <form action="/logout" method="POST">
                             @csrf
@@ -268,6 +246,68 @@
                             <span class="flex-1 ms-3 whitespace-nowrap">Masuk</span>
                         </a>
                     @endif
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <div class="p-4 sm:ml-64">
+        <nav class="border-gray-200 rounded-md shadow-md bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <span
+                    class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white flex items-center gap-3">
+                    @if (Auth::user()->role == 'Admin')
+                        {{ $property_app->app_name }}<span
+                            class="tracking-wider flex gap-2 items-center text-white bg-blue-500 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold"
+                            title="">
+                            <i class="fas fa-star" aria-hidden="true"></i>{{ Auth::user()->role }}</span>
+                    @elseif (Auth::user()->role == 'Manajer gudang')
+                        <span
+                            class="tracking-wider flex items-center gap-2 text-white bg-orange-500 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold"
+                            title="">
+                            <i class="fas fa-heart" aria-hidden="true"></i>{{ Auth::user()->role }}
+                        </span>
+                    @elseif (Auth::user()->role == 'Staff gudang')
+                        <span
+                            class="tracking-wider text-white bg-green-500 flex items-center gap-2 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold"
+                            title="">
+                            <i class="fas fa-award" aria-hidden="true"></i>{{ Auth::user()->role }}
+                        </span>
+                    @endif
+                </span>
+                <div class="flex items-center gap-5">
+                    <p class="font-semibold hidden lg:block md:block whitespace-nowrap dark:text-white">
+                        {{ Auth::user()->name }}</p>
+                    @if (Auth::check())
+                        <div class="hidden lg:block md:block">
+                            <form action="/logout" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button
+                                    class="flex items-center p-2 text-gray-900 rounded-lg bg-green-600 dark:text-white">
+                                    <svg class="shrink-0 w-5 h-5 text-white transition duration-75 dark:text-white group-hover:text-gray-900 dark:group-hover:text-white"
+                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 18 16">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3" />
+                                    </svg>
+                                    <span
+                                        class="flex-1 ms-3 whitespace-nowrap dark:text-white text-gray-200 font-bold">Keluar</span>
+                                </button>
+                            </form>
+                        @else
+                            <a href="/login" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white">
+                                <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 18 16">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3" />
+                                </svg>
+                                <span class="flex-1 ms-3 whitespace-nowrap">Masuk</span>
+                            </a>
+                        </div>
+                    @endif
                 </div>
             </div>
         </nav>
@@ -276,6 +316,7 @@
 
     @include('sweetalert::alert')
 
+    <script src="{{ asset('js/script.js') }}"></script>
 </body>
 
 </html>

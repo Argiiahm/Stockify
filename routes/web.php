@@ -11,6 +11,7 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\SuppliersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use RealRashid\SweetAlert\Facades\Alert;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,19 +29,21 @@ Route::get('/', function () {
     // Admin Bisa Akses Semua Halaman,
 
     if (Auth::user()->role == "Admin") {
+        Alert::toast('Selamat Datang!  ' . Auth::user()->role , 'info');
         return redirect('/admin/dashboard');
     } elseif (Auth::user()->role == "Manajer gudang") {
+        Alert::toast('Selamat Datang!  ' . Auth::user()->role , 'info');
         return redirect('/management_gudang/dashboard');
     } elseif (Auth::user()->role == "Staff gudang") {
+        Alert::toast('Selamat Datang!  ' . Auth::user()->role , 'info');
         return redirect('/staffgudang/dashboard');
-    }     
-     
+    }
 })->middleware('auth');
 
 
 // Export dan import Product
 Route::get('/product/export/', [ProductController::class, 'export'])->middleware('admin');
-Route::post('/import/product',[ProductController::class, 'import'])->middleware('admin');
+Route::post('/import/product', [ProductController::class, 'import'])->middleware('admin');
 
 
 
@@ -113,7 +116,7 @@ Route::get('/management_gudang/supplier', [ManagementGudangContoller::class, 'su
 Route::get('/management_gudang/laporan', [ManagementGudangContoller::class, 'laporan'])->middleware('admin_gudang');
 
 // Laporan Manajemen
-Route::get('/laporan/stock/m/{categories:name}',[ManagementGudangContoller::class, 'laporan_by_category'])->middleware('admin_gudang');
+Route::get('/laporan/stock/m/{categories:name}', [ManagementGudangContoller::class, 'laporan_by_category'])->middleware('admin_gudang');
 
 //Management Gudang -- Transaksi Stok Masuk Dan Keluar
 Route::post('/transaksi/stock', [ManagementGudangContoller::class, 'tfStock'])->middleware('admin_gudang');

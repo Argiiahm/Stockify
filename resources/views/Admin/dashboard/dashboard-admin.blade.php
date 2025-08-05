@@ -3,7 +3,7 @@
 @section('content')
     <div class="p-4 sm:ml-64">
         {{-- Stock Product by Name --}}
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div class="max-w-sm p-6 bg-blue-700 border border-gray-200 rounded-lg shadow-sm dark:bg-blue-700">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">Jumlah Produk</h5>
                 <p class="mb-3 font-normal text-4xl text-white">{{ $count }}</p>
@@ -26,7 +26,7 @@
         </div>
 
         {{-- Filter Berdasarkan Bulan --}}
-        <div class="my-3 flex justify-between items-center">
+        <div class="my-5 block lg:flex justify-between items-center">
             <div class="flex items-center gap-2">
                 <i class="ph ph-trend-up text-4xl text-gray-600"></i>
                 <p class="text-2xl text-gray-400">Data Stok Masuk & Keluar</p>
@@ -40,7 +40,6 @@
                     <button class="px-4 py-2 bg-green-500 text-white font-bold rounded-md" type="submit">Cari</button>
                 </form>
             </div>
-
         </div>
         <h1 class="font-bold text-gray-500">
             Bulan:
@@ -109,7 +108,7 @@
 
 
         <div class="relative overflow-x-auto my-12">
-            <div class="bg-gray-800 text-white text-center text-2xl font-semibold py-3 rounded my-2">
+            <div class="bg-gray-800 text-white text-center font-semibold py-1 rounded my-2">
                 <div class="flex justify-between items-center px-10 pb-4">
                     Tabel Aktivitas User
                     <h1 class="my-2 text-gray-400"> {{ now()->translatedformat('l') }}</h1>
@@ -139,7 +138,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($Activity as $a)
+                         @foreach ($Activity as $a)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -162,7 +161,7 @@
                                 </td>
                             </tr>
                         @endforeach
-                    </tbody>
+                    </tbody> 
                 </table>
             </div>
             {{-- {{ $Activity->links('pagination::simple-tailwind') }} --}}
