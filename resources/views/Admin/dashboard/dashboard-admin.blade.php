@@ -3,10 +3,15 @@
 @section('content')
     <div class="p-4 sm:ml-64">
         {{-- Stock Product by Name --}}
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
-            <div class="max-w-sm p-6 bg-blue-700 border border-gray-200 rounded-lg shadow-sm dark:bg-blue-700">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">Jumlah Produk</h5>
-                <p class="mb-3 font-normal text-4xl text-white">{{ $count }}</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="max-w-sm p-6 flex items-center justify-between border border-gray-200 rounded-lg bg-gray-100 shadow">
+                <div>
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-zinc-700">Jumlah Produk</h5>
+                    <p class="mb-3 font-normal text-4xl text-zinc-600">{{ $count }}</p>
+                </div>
+                <div class="w-24">
+                    <img src="{{ asset('image/tl.webp') }}" alt="">
+                </div>
             </div>
             @foreach ($Product as $s)
                 @php
@@ -72,7 +77,7 @@
                                     {{ $value }},
                                 @endforeach
                             ],
-                            backgroundColor: 'rgba(119, 190, 240)',
+                            backgroundColor: 'rgba(121, 158, 255)',
                             borderColor: 'rgba(173, 238, 217)',
                             borderWidth: 1
                         },
@@ -138,7 +143,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                         @foreach ($Activity as $a)
+                        @foreach ($Activity as $a)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -161,7 +166,7 @@
                                 </td>
                             </tr>
                         @endforeach
-                    </tbody> 
+                    </tbody>
                 </table>
             </div>
             {{-- {{ $Activity->links('pagination::simple-tailwind') }} --}}

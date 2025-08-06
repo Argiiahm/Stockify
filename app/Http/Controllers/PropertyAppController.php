@@ -22,7 +22,7 @@ class PropertyAppController extends Controller
     {
         $Vdata = $request->validate([
             'app_name' => 'required|max:20',
-            'app_image' => 'nullable|image|mimes:jpeg,png,jpg',
+            'app_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif',
         ]);
 
         if ($request->hasFile('app_image')) {

@@ -74,6 +74,9 @@ Route::get('/admin/supplier', [AdminController::class, 'supplier'])->middleware(
 Route::get('/admin/pengguna', [AdminController::class, 'pengguna'])->middleware('admin');
 Route::get('/admin/laporan', [AdminController::class, 'laporan'])->middleware('admin');
 
+// Pengaturan Stock Minimum | Admin Akses
+Route::put('/stock/minimum/{stock:id}', [AdminController::class, 'minimumstock'])->middleware('admin');
+
 //detail stock
 Route::get('/stock/detail/{stock:slug}', [StaffController::class, 'detailStock'])->middleware('admin');
 Route::get('/stock/detail/', [StaffController::class, 'detailkosong'])->middleware('admin');

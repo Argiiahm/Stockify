@@ -14,13 +14,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
     integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
 <link rel="stylesheet" type="text/css"
-    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" /> 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-<body>
-
+<body class="bg-[#FAF7F3]">
     <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar"
         type="button"
         class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
@@ -36,7 +35,7 @@
     <aside id="default-sidebar"
         class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar">
-        <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+        <div class="h-full px-3 py-4 overflow-y-auto bg-gray-800">
             <ul class="space-y-2 font-medium">
 
                 {{-- Logo --}}
@@ -44,22 +43,17 @@
                     $imagePath = $property_app->app_image;
                 @endphp
 
-                <li class="flex justify-center">
-                    <div class="bg-gray-700 w-64 h-36 p-2 rounded-md shadow-md flex items-center justify-center">
-                        <img src="{{ Str::startsWith($imagePath, 'image/') ? asset($imagePath) : asset('storage/' . $imagePath) }}"
+                <li class="flex justify-center my-10">
+                    <div class=" w-32 p-2 flex items-center justify-center">
+                        <img class="" src="{{ Str::startsWith($imagePath, 'image/') ? asset($imagePath) : asset('storage/' . $imagePath) }}"
                             alt="Logo" class="h-full object-contain">
                     </div>
                 </li>
-
-
-
-
-
                 {{-- Admin Route --}}
                 @if (Auth::user()->role == 'Admin')
                     <li>
                         <button type="button"
-                            class="flex items-center w-full p-2 text-base bg-gray-700 text-white transition duration-75 rounded-lg group hover:bg-gray-600"
+                            class="flex items-center bg-gray-700 w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-600"
                             aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
 
                             <i class="ph ph-identification-card text-white"></i>
@@ -127,7 +121,7 @@
                 @if (Auth::user()->role == 'Manajer gudang' || Auth::user()->role == 'Admin')
                     <li>
                         <button type="button"
-                            class="flex items-center w-full p-2 text-base bg-gray-700 text-white transition duration-75 rounded-lg group hover:bg-gray-600"
+                            class="flex items-center bg-gray-700 w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-600"
                             aria-controls="dropdown-m" data-collapse-toggle="dropdown-m">
 
                             <i class="ph ph-warehouse text-white"></i>
@@ -187,7 +181,7 @@
                 {{-- Staff Gudang Route --}}
                 <li>
                     <button type="button"
-                        class="flex items-center w-full p-2 text-base bg-gray-700 text-white transition duration-75 rounded-lg group hover:bg-gray-600"
+                        class="flex items-center bg-gray-700 w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-600"
                         aria-controls="dropdown-staff" data-collapse-toggle="dropdown-staff">
 
                         <i class="ph ph-identification-card text-white"></i>
@@ -251,10 +245,10 @@
         </div>
     </aside>
     <div class="p-4 sm:ml-64">
-        <nav class="border-gray-200 rounded-md shadow-md bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+        <nav class="border-gray-200 rounded-md  shadow-md bg-gray-800 dark:border-gray-700">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <span
-                    class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white flex items-center gap-3">
+                    class="self-center text-2xl font-semibold whitespace-nowrap text-white flex items-center gap-3">
                     @if (Auth::user()->role == 'Admin')
                         {{ $property_app->app_name }}<span
                             class="tracking-wider flex gap-2 items-center text-white bg-blue-500 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold"
@@ -275,7 +269,7 @@
                     @endif
                 </span>
                 <div class="flex items-center gap-5">
-                    <p class="font-semibold hidden lg:block md:block whitespace-nowrap dark:text-white">
+                    <p class="font-semibold hidden lg:block md:block whitespace-nowrap text-white">
                         {{ Auth::user()->name }}</p>
                     @if (Auth::check())
                         <div class="hidden lg:block md:block">

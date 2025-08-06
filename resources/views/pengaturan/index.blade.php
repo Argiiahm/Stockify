@@ -25,7 +25,7 @@
                 <div class="mb-4">
                     <label for="logo" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Logo saat
                         ini</label>
-                    <div class="flex items-center">
+                    <div class="flex items-center mt-10">
                         @php
                             $imagePath = $property_app->app_image;
                         @endphp

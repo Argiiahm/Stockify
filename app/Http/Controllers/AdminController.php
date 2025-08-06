@@ -25,6 +25,7 @@ class AdminController extends Controller
 
 
         $today = now()->toDateString();
+
         foreach ($product as $p) {
 
 
@@ -158,7 +159,7 @@ class AdminController extends Controller
             "stockMasuk"     =>   $DataMasuk,
             "stockKeluar"    =>   $DataKeluar
         ]);
-    }   
+    }
 
     // Laporan
     public function laporan_by_category(Categories $categories)
@@ -168,5 +169,31 @@ class AdminController extends Controller
             "data"     =>     $categories,
             "product"  =>     $product,
         ]);
+    }
+
+    public function minimumstock(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+
+        $request->validate([
+            'minimum_stock' => 'required|integer',
+        ]);
+
+        // Cek tombol mana yang diklik
+        $action = $request->input('action');
+        $newStock = $request->minimum_stock;
+
+        if ($action === 'increment') {
+            $newStock = $newStock + 1;
+        } elseif ($action === 'decrement') {
+            $newStock = $newStock - 1;
+        }
+
+        // Update
+        $product->update([
+            'minimum_stock' => $newStock,
+        ]);
+
+        return back()->with('success', 'Minimum stock berhasil diperbarui');
     }
 }
