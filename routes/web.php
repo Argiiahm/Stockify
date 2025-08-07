@@ -1,5 +1,5 @@
-<?php
 
+<?php
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AttributesController;
 use App\Http\Controllers\AuthController;
@@ -23,6 +23,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
 
 Route::get('/', function () {
 

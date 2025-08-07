@@ -189,7 +189,6 @@ class AdminController extends Controller
             $newStock = $newStock - 1;
         }
 
-        // Update
         $product->update([
             'minimum_stock' => $newStock,
         ]);

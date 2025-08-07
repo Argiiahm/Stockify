@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
     integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
 <link rel="stylesheet" type="text/css"
-    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" /> 
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -45,7 +45,8 @@
 
                 <li class="flex justify-center my-10">
                     <div class=" w-32 p-2 flex items-center justify-center">
-                        <img class="" src="{{ Str::startsWith($imagePath, 'image/') ? asset($imagePath) : asset('storage/' . $imagePath) }}"
+                        <img class=""
+                            src="{{ Str::startsWith($imagePath, 'image/') ? asset($imagePath) : asset('storage/' . $imagePath) }}"
                             alt="Logo" class="h-full object-contain">
                     </div>
                 </li>
@@ -53,7 +54,7 @@
                 @if (Auth::user()->role == 'Admin')
                     <li>
                         <button type="button"
-                            class="flex items-center bg-gray-700 w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-600"
+                            class="flex items-center bg-gray-900 w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-600"
                             aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
 
                             <i class="ph ph-identification-card text-white"></i>
@@ -71,31 +72,31 @@
                         <ul id="dropdown-example" class="hidden py-2 space-y-2">
                             <li>
                                 <a href="/admin/dashboard"
-                                    class="flex {{ Request()->is('admin/dashboard') ? 'bg-gray-700' : '' }} items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Dashboard</a>
+                                    class="flex {{ Request()->is('admin/dashboard') ? 'bg-gray-700' : '' }}  items-center w-full p-2 text-gray-400 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Dashboard</a>
                             </li>
                             <li>
                                 <a href="/admin/produk"
-                                    class="flex {{ Request()->is('admin/produk') ? 'bg-gray-700' : '' }} items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Produk</a>
+                                    class="flex {{ Request()->is('admin/produk') ? 'bg-gray-700' : '' }}  items-center w-full p-2 text-gray-400 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Produk</a>
                             </li>
                             <li>
                                 <a href="/admin/stock"
-                                    class="flex {{ Request()->is('admin/stock') ? 'bg-gray-700' : '' }} items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Stok</a>
+                                    class="flex {{ Request()->is('admin/stock') ? 'bg-gray-700' : '' }} items-center w-full p-2 text-gray-400 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Stok</a>
                             </li>
                             <li>
                                 <a href="/admin/supplier"
-                                    class="flex items-center {{ Request()->is('admin/supplier') ? 'bg-gray-700' : '' }} w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Supplier</a>
+                                    class="flex items-center {{ Request()->is('admin/supplier') ? 'bg-gray-700' : '' }} w-full p-2 text-gray-400 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Supplier</a>
                             </li>
                             <li>
                                 <a href="/admin/pengguna"
-                                    class="flex items-center {{ Request()->is('admin/pengguna') ? 'bg-gray-700' : '' }} w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Pengguna</a>
+                                    class="flex items-center {{ Request()->is('admin/pengguna') ? 'bg-gray-700' : '' }} w-full p-2 text-gray-400 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Pengguna</a>
                             </li>
                             <li>
                                 <a href="/admin/laporan"
-                                    class="flex items-center {{ Request()->is('admin/laporan') ? 'bg-gray-700' : '' }} w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Laporan</a>
+                                    class="flex items-center {{ Request()->is('admin/laporan') ? 'bg-gray-700' : '' }} w-full p-2 text-gray-400 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Laporan</a>
                             </li>
                             <li>
                                 <a href="/admin/pengaturan"
-                                    class="flex items-center {{ Request()->is('admin/pengaturan') ? 'bg-gray-700' : '' }} w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Pengaturan</a>
+                                    class="flex items-center {{ Request()->is('admin/pengaturan') ? 'bg-gray-700' : '' }} w-full p-2 text-gray-400 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">Pengaturan</a>
                             </li>
                         </ul>
                     </li>
@@ -121,7 +122,7 @@
                 @if (Auth::user()->role == 'Manajer gudang' || Auth::user()->role == 'Admin')
                     <li>
                         <button type="button"
-                            class="flex items-center bg-gray-700 w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-600"
+                            class="flex items-center bg-gray-900 w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-600"
                             aria-controls="dropdown-m" data-collapse-toggle="dropdown-m">
 
                             <i class="ph ph-warehouse text-white"></i>
@@ -181,7 +182,7 @@
                 {{-- Staff Gudang Route --}}
                 <li>
                     <button type="button"
-                        class="flex items-center bg-gray-700 w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-600"
+                        class="flex items-center bg-gray-900 w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-600"
                         aria-controls="dropdown-staff" data-collapse-toggle="dropdown-staff">
 
                         <i class="ph ph-identification-card text-white"></i>
@@ -239,7 +240,7 @@
                             </svg>
                             <span class="flex-1 ms-3 whitespace-nowrap">Masuk</span>
                         </a>
-                    @endif
+                    @endif 
                 </li>
             </ul>
         </div>
@@ -247,12 +248,10 @@
     <div class="p-4 sm:ml-64">
         <nav class="border-gray-200 rounded-md  shadow-md bg-gray-800 dark:border-gray-700">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <span
-                    class="self-center text-2xl font-semibold whitespace-nowrap text-white flex items-center gap-3">
+                <span class="self-center text-2xl font-semibold whitespace-nowrap text-white flex items-center gap-3">
                     @if (Auth::user()->role == 'Admin')
-                        {{ $property_app->app_name }}<span
-                            class="tracking-wider flex gap-2 items-center text-white bg-blue-500 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold"
-                            title="">
+                        {{ $property_app->app_name }}
+                        <span class="tracking-wider flex gap-2 items-center text-white bg-blue-500 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold">
                             <i class="fas fa-star" aria-hidden="true"></i>{{ Auth::user()->role }}</span>
                     @elseif (Auth::user()->role == 'Manajer gudang')
                         <span
@@ -261,9 +260,7 @@
                             <i class="fas fa-heart" aria-hidden="true"></i>{{ Auth::user()->role }}
                         </span>
                     @elseif (Auth::user()->role == 'Staff gudang')
-                        <span
-                            class="tracking-wider text-white bg-green-500 flex items-center gap-2 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold"
-                            title="">
+                        <span class="tracking-wider text-white bg-green-500 flex items-center gap-2 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold">
                             <i class="fas fa-award" aria-hidden="true"></i>{{ Auth::user()->role }}
                         </span>
                     @endif

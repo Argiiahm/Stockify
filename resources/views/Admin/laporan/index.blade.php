@@ -210,7 +210,7 @@
                             <th scope="col" class="px-6 py-3">
                                 Time
                             </th>
-                        </tr>
+                        </tr> 
                     </thead>
                     <tbody>
                         @foreach ($actv as $a)
