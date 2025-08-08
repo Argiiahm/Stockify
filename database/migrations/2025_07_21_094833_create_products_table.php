@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->decimal('purchase_price',20,0);
             $table->decimal('selling_price',20, 0);
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->integer('minimum_stock');
             $table->foreignId('category_id');
             $table->foreignId('supplier_id');

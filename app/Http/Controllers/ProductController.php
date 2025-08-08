@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
@@ -36,7 +37,7 @@ class ProductController extends Controller
          "description"     =>       "required",
          "purchase_price"  =>       "required",
          "selling_price"   =>       "required",
-         "image"           =>       "image|file|mimes:png,jpg,jpeg",
+         "image"           =>       "nullable|string|image|file|mimes:png,jpg,jpeg",
          "minimum_stock"   =>       "required",
          "category_id"     =>       "required",
          "supplier_id"     =>       "required",
@@ -60,6 +61,65 @@ class ProductController extends Controller
       } else {
          return back();
          alert()->success('warningAlert', 'Barang Gagal DiTambahkan!');
+      }
+   }
+
+   public function edit(Product $Product)
+   {
+      // dd($Product);
+      return view('product.form-edit-product', [
+         "Data"       =>    $Product,
+         "Suppliers"  =>    Suppliers::all(),
+         "Categories" =>    Categories::all()
+      ]);
+   }
+
+   //update
+
+   public function update(Request $request, Product $Product)
+   {
+      $validasiData = $request->validate([
+         "name"            =>       "required",
+         "sku"             =>       "required",
+         "description"     =>       "required",
+         "purchase_price"  =>       "required",
+         "selling_price"   =>       "required",
+         "image"           =>       "nullable|image|file|mimes:png,jpg,jpeg",
+         "minimum_stock"   =>       "required",
+         "category_id"     =>       "required",
+         "supplier_id"     =>       "required",
+      ]);
+
+      if ($request->file('image')) {
+         $validasiData['image']  =  $request->file('image')->store('product-image', 'public');
+      }
+
+      if ($validasiData['name'] != $request->name) {
+         $validasiData['slug'] = Str::slug($request->name);
+      }
+
+      if ($Product->update($validasiData)) {
+         if (Auth::user()->role == "Admin") {
+            alert()->success('SuccessAlert', 'Barang Berhasil Di Ubah!');
+            return redirect('/admin/produk');
+         }
+      } else {
+         return back();
+         alert()->success('warningAlert', 'Barang Gagal Di Ubah!');
+      }
+   }
+
+   //delete
+   public function delete(Product $Product)
+   {
+      if ($Product->delete($Product->id)) {
+         if (Auth::user()->role == "Admin") {
+            alert()->success('SuccessAlert', 'Barang Berhasil Di Hapus!');
+            return redirect('/admin/produk');
+         }
+      } else {
+         return back();
+         alert()->success('warningAlert', 'Barang Gagal Di Hapus!');
       }
    }
 

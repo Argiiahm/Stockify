@@ -121,10 +121,10 @@ class AdminController extends Controller
         $count = Product::count();
         return view('Admin.admin-product', [
             "Product"     =>     Product::all(),
-            "Suppliers"   =>   Suppliers::all(),
-            "Categories"  =>  Categories::all(),
-            "Attribute"   =>   Attribute::all(),
-            "count"       =>   $count,
+            "Suppliers"   =>     Suppliers::all(),
+            "Categories"  =>     Categories::all(),
+            "Attribute"   =>     Attribute::all(),
+            "count"       =>      $count,
         ]);
     }
 

@@ -67,3 +67,19 @@ function ConfirmHapusAtt() {
         }
     });
 }
+function ConfirmHapusProduct() {
+    event.preventDefault();
+    Swal.fire({
+        title: "Are you sure?",
+        text: "Delete?!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, confirm",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById("form-delete-product").submit();
+        }
+    });
+}

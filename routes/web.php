@@ -9,6 +9,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PropertyAppController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\SuppliersController;
+use App\Http\Middleware\admin_gudang;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -90,7 +92,9 @@ Route::put('/pengaturan/update/{property_app:id}', [PropertyAppController::class
 
 //Product CRUD - Admin Akses
 Route::post('/product/store', [ProductController::class, 'store'])->middleware('admin_gudang');
-
+Route::get('/edit/product/{Product:id}', [ProductController::class, 'edit'])->middleware('admin');
+Route::put('/update/product/{Product:id}', [ProductController::class, 'update'])->middleware('admin');
+Route::delete('/delete/product/{Product:id}', [ProductController::class, 'delete'])->middleware('admin');
 
 //Categories CRUD - Admin Akses
 Route::get('/category', [CategoriesController::class, 'index'])->middleware('admin');
