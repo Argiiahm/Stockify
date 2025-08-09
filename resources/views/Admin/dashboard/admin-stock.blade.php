@@ -31,7 +31,6 @@
                                 ->where('type', 'keluar')
                                 ->where('status', 'dikeluarkan')
                                 ->sum('quantity');
-
                             $hasil = $stokM - $stokK;
                         @endphp
                         @if ($hasil <= $p->minimum_stock + 2)
@@ -70,7 +69,6 @@
                                 <td class="px-6 py-4">
                                     {{ $hasil }}
                                 </td>
-
                                 @if ($hasil == 0)
                                     <td class="px-6 py-4">
                                         <a href="/stock/detail"
@@ -132,7 +130,6 @@
                                     class="flex items-center justify-center space-x-0.5 max-w-xs mx-auto">
                                     @csrf
                                     @method('PUT')
-
                                     {{-- Tombol (-) --}}
                                     <button type="submit" name="action" value="decrement"
                                         class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
@@ -142,12 +139,9 @@
                                                 stroke-width="2" d="M1 1h16" />
                                         </svg>
                                     </button>
-
-                                    {{-- Input manual --}}
                                     <input type="text" name="minimum_stock" min="1" max="50"
                                         value="{{ $p->minimum_stock }}"
                                         class="bg-gray-50 border-x-0 border-gray-300 h-11 w-12 text-center text-gray-900 text-sm py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-none" />
-        
                                     {{-- Tombol (+) --}}
                                     <button type="submit" name="action" value="increment"
                                         class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
@@ -158,13 +152,11 @@
                                         </svg>
                                     </button>
                                 </form>
-
                             </td>
                         </tr>  
                     @endforeach
                 </tbody>
             </table>
         </div>
-
     </div>
 @endsection

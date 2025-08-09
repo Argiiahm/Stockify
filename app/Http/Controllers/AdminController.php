@@ -156,8 +156,8 @@ class AdminController extends Controller
             "category"       =>    Categories::withcount('products')->get(),
             "DataStock"      =>    Product::all(),
             "actv"           =>    UserActivity::latest()->get(),
-            "stockMasuk"     =>   $DataMasuk,
-            "stockKeluar"    =>   $DataKeluar
+            "stockMasuk"     =>    $DataMasuk,
+            "stockKeluar"    =>    $DataKeluar
         ]);
     }
 
