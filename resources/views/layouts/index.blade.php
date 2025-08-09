@@ -54,7 +54,7 @@
                 @if (Auth::user()->role == 'Admin')
                     <li>
                         <button type="button"
-                            class="flex items-center bg-gray-900 w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-600"
+                            class="flex items-center bg-gray-700 w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-600"
                             aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
 
                             <i class="ph ph-identification-card text-white"></i>
@@ -122,7 +122,7 @@
                 @if (Auth::user()->role == 'Manajer gudang' || Auth::user()->role == 'Admin')
                     <li>
                         <button type="button"
-                            class="flex items-center bg-gray-900 w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-600"
+                            class="flex items-center bg-gray-700 w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-600"
                             aria-controls="dropdown-m" data-collapse-toggle="dropdown-m">
 
                             <i class="ph ph-warehouse text-white"></i>
@@ -182,7 +182,7 @@
                 {{-- Staff Gudang Route --}}
                 <li>
                     <button type="button"
-                        class="flex items-center bg-gray-900 w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-600"
+                        class="flex items-center bg-gray-700 w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:bg-gray-600"
                         aria-controls="dropdown-staff" data-collapse-toggle="dropdown-staff">
 
                         <i class="ph ph-identification-card text-white"></i>

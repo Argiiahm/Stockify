@@ -35,7 +35,7 @@ class CategoriesController extends Controller
     public function destroy(Categories $category)
     {
         // dd($category);
-        $category->delete();
+        $category->delete($category->id);
         alert()->success('Berhasil! Menhapus Category');
         return redirect('/admin/produk');
     }

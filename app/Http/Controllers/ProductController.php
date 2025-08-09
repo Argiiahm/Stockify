@@ -12,7 +12,6 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
@@ -32,15 +31,15 @@ class ProductController extends Controller
    {
       // dd($request->all());   
       $validasiData = $request->validate([
-         "name"            =>       "required",
-         "sku"             =>       "required",
-         "description"     =>       "required",
-         "purchase_price"  =>       "required",
-         "selling_price"   =>       "required",
-         "image"           =>       "nullable|string|image|file|mimes:png,jpg,jpeg",
-         "minimum_stock"   =>       "required",
-         "category_id"     =>       "required",
-         "supplier_id"     =>       "required",
+         "name"              =>       "required",
+         "sku"               =>       "required",
+         "description"       =>       "required",
+         "purchase_price"    =>       "required",
+         "selling_price"     =>       "required",
+         "image"             =>       "nullable|string|image|file|mimes:png,jpg,jpeg",
+         "minimum_stock"     =>       "required",
+         "category_id"       =>       "required",
+         "supplier_id"       =>       "required",
       ]);
 
       if ($request->file('image')) {
@@ -68,9 +67,9 @@ class ProductController extends Controller
    {
       // dd($Product);
       return view('product.form-edit-product', [
-         "Data"       =>    $Product,
-         "Suppliers"  =>    Suppliers::all(),
-         "Categories" =>    Categories::all()
+         "Data"         =>    $Product,
+         "Suppliers"    =>    Suppliers::all(),
+         "Categories"   =>    Categories::all()
       ]);
    }
 
@@ -148,7 +147,5 @@ class ProductController extends Controller
          alert()->success('Berhasil Import Data');
          return redirect('/admin/produk');
       };
-      // alert()->warning('WarningAlert', 'Format File Tidak Benar!');
-      // return back();
    }
 }

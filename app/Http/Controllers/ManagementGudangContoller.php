@@ -78,15 +78,24 @@ class ManagementGudangContoller extends Controller
     public function stock()
     {
         $allProduct = Product::all();
-        $today = now()->toDateString();
+        $count = Product::count();
+        $product = Product::all();
 
-        $Data = Product::whereDate('created_at', $today)->get();
+        $stokMasuk = [];
+        $stokKeluar = [];
+
+        foreach ($product as $p) {
+            $stokMasuk[] = $p->stock()->where('type', 'masuk')->where('status', 'diterima')->sum('quantity');
+            $stokKeluar[] = $p->stock()->where('type', 'keluar')->where('status', 'dikeluarkan')->sum('quantity');
+        }
+
+
         return view('ManageGudang.stock', [
-            "Product"   =>       Product::all(),
-            "Suppliers"  =>      Suppliers::all(),
-            "Categories"  =>     Categories::all(),
-            "Products"     =>    $allProduct,
-            "DataToday"     =>   $Data
+            "count"  =>  $count,
+            "product" =>  Product::all(),
+            "stockMasuk" =>  $stokMasuk,
+            "stockKeluar" =>  $stokKeluar,
+            "Products"    =>  $allProduct
         ]);
     }
 

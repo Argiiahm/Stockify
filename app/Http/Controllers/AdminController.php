@@ -124,7 +124,7 @@ class AdminController extends Controller
             "Suppliers"   =>     Suppliers::all(),
             "Categories"  =>     Categories::all(),
             "Attribute"   =>     Attribute::all(),
-            "count"       =>      $count,
+            "count"       =>     $count,
         ]);
     }
 
@@ -179,14 +179,13 @@ class AdminController extends Controller
             'minimum_stock' => 'required|integer',
         ]);
 
-        // Cek tombol mana yang diklik
         $action = $request->input('action');
         $newStock = $request->minimum_stock;
 
         if ($action === 'increment') {
             $newStock = $newStock + 1;
         } elseif ($action === 'decrement') {
-            $newStock = $newStock - 1;
+            $newStock = $newStock - 1; 
         }
 
         $product->update([

@@ -42,64 +42,92 @@
         @include('ManageGudang.modal-barang_masuk')
         @include('ManageGudang.modal-barang_keluar')
 
-         <div class="relative overflow-x-auto my-5">
-    <div class="bg-gray-800 text-white text-center text-2xl font-semibold py-2 rounded my-2">
-     Data Product
-    </div>
-     <div class="border-l-4 border-black rounded-md overflow-x-auto">
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-             <tr>
-              
-                 <th scope="col" class="px-6 py-3">
-                     Name
-                 </th>
-                 <th scope="col" class="px-6 py-3">
-                     Sku
-                 </th>
-                 <th scope="col" class="px-6 py-3">
-                     Description 
-                 </th>
-                 <th scope="col" class="px-6 py-3">
-                     Purchase Price
-                 </th>
-                 <th scope="col" class="px-6 py-3">
-                     Selling Price
-                 </th>
-                 <th scope="col" class="px-6 py-3">
-                     Image
-                 </th>
-                 <th scope="col" class="px-6 py-3">
-                     stock
-                 </th>
-             </tr>
-         </thead>
-         <tbody>
-            @foreach ($Product as $p )
-               <tr class="text-center">
-                    <td>{{ $p->name }}</td>
-                    <td>{{ $p->sku }}</td>
-                    <td>{{ $p->description }}</td>
-                    <td>{{ $p->purchase_price }}</td>
-                    <td>{{ $p->selling_price }}</td>
-                    <td class="py-2 px-3">
-                        <img class="w-16" src="{{ asset('storage/' . $p->image) }}" alt="image">
-                    </td>
-            @php
-                $stokM = $p->stock->where('type', 'masuk')->where('status', 'diterima')->sum('quantity');
-                $stokK = $p->stock->where('type', 'keluar')->where('status', 'dikeluarkan')->sum('quantity');
 
-                $output = $stokM - $stokK;
-            @endphp
-                    <td>{{ $output }}</td>
-               </tr>
-            @endforeach
-         </tbody>
-     </table>
- </div>
+        <div class="relative overflow-x-auto">
+            <div class="bg-gray-800 text-white text-center text-2xl font-semibold py-2 rounded my-2">
+                Stock Opname
+            </div>
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            No
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Nama Barang
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Jumlah Opname
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($product as $p)
+                        @php
+                            $stokM = $p->stock->where('type', 'masuk')->where('status', 'diterima')->sum('quantity');
+                            $stokK = $p->stock
+                                ->where('type', 'keluar')
+                                ->where('status', 'dikeluarkan')
+                                ->sum('quantity');
 
+                            $hasil = $stokM - $stokK;
+                        @endphp
+                        @if ($hasil <= $p->minimum_stock + 2)
+                            <tr class="bg-red-600 text-white border border-b-gray-300">
+                                <td scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ $loop->iteration }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $p->name }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $hasil }}
+                                </td>
+                                @if ($hasil == 0)
+                                    <td class="px-6 py-4">
+                                        <a href="/stock/detail"
+                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
+                                    </td>
+                                @else
+                                    <td class="px-6 py-4">
+                                        <a href="/stock/detail/{{ $p->slug }}"
+                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
+                                    </td>
+                                @endif
+                            </tr>
+                        @else
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                                <td scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ $loop->iteration }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $p->name }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $hasil }}
+                                </td>
+
+                                @if ($hasil == 0)
+                                    <td class="px-6 py-4">
+                                        <a href="/stock/detail"
+                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
+                                    </td>
+                                @else
+                                    <td class="px-6 py-4">
+                                        <a href="/stock/detail/{{ $p->slug }}"
+                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
+                                    </td>
+                                @endif
+                            </tr>
+                        @endif
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 @endsection

@@ -21,8 +21,6 @@ return new class extends Migration
             $table->decimal('selling_price',20, 0);
             $table->string('image')->nullable();
             $table->integer('minimum_stock');
-            $table->foreignId('category_id');
-            $table->foreignId('supplier_id');
             $table->timestamps();
         });
     }

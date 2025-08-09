@@ -50,20 +50,20 @@ class Product extends Model
             }
         });
 
-        // static::updated(function ($product) {
-        //       UserActivity::create([
-        //         'user_id' => auth()->user()->id,
-        //         'action' => 'Update',
-        //         'activity' => 'Membuat Produk: ' . $product->name
-        //     ]);
-        // });
+        static::updated(function ($product) {
+              UserActivity::create([
+                'user_id' => auth()->user()->id,
+                'action' => 'Update',
+                'activity' => 'Mengubah Produk: ' . $product->name
+            ]);
+        });
 
-        // static::deleted(function ($product) {
-        //     UserActivity::create([
-        //         'user_id' => auth()->user()->id,
-        //         'action' => 'create',
-        //         'activity' => 'Membuat Produk: ' . $product->name
-        //     ]);
-        // });
+        static::deleted(function ($product) {
+            UserActivity::create([
+                'user_id' => auth()->user()->id,
+                'action' => 'create',
+                'activity' => 'Menghapus Produk: ' . $product->name
+            ]);
+        });
     }
 }

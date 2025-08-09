@@ -35,22 +35,22 @@ function ConfirmTolakStock() {
 //End Staff Stock
 
 
-function ConfirmHapus() {
-    event.preventDefault();
-    Swal.fire({
-        title: "Are you sure?",
-        text: "Delete?!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, confirm",
-    }).then((result) => {
-        if (result.isConfirmed) {
-            document.getElementById("form-delete").submit();
-        }
-    });
-}
+// function ConfirmHapus() {
+//     event.preventDefault();
+//     Swal.fire({
+//         title: "Are you sure?",
+//         text: "Delete?!",
+//         icon: "warning",
+//         showCancelButton: true,
+//         confirmButtonColor: "#3085d6",
+//         cancelButtonColor: "#d33",
+//         confirmButtonText: "Yes, confirm",
+//     }).then((result) => {
+//         if (result.isConfirmed) {
+//             document.getElementById("form-delete").submit();
+//         }
+//     });
+// }
 function ConfirmHapusAtt() {
     event.preventDefault();
     Swal.fire({
