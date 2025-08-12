@@ -26,10 +26,12 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+
         User::create([
            "name"       =>    "King Seno 👑",
            "email"      =>    "seno@gmail.com",
-           "password"   =>     bcrypt('123')
+           "password"   =>     bcrypt('123'),
+           "role"       =>     "Admin"
         ]);
         User::create([
            "name"       =>    "Rehan King Robloxx",

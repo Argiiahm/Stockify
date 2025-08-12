@@ -28,6 +28,6 @@
     </div>
 
     @include('staffGudang.modals-staff.modal-barang_masuk')
-    @include('staffGudang.modals-staff.modal-barang_keluar')`
+    @include('staffGudang.modals-staff.modal-barang_keluar')
 
 @endsection
