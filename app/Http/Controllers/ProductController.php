@@ -29,14 +29,14 @@ class ProductController extends Controller
 
    public function store(Request $request)
    {
-      // dd($request->all());   
+      dd($request->all());   
       $validasiData = $request->validate([
          "name"              =>       "required",
          "sku"               =>       "required",
          "description"       =>       "required",
          "purchase_price"    =>       "required",
          "selling_price"     =>       "required",
-         "image"             =>       "nullable|string|image|file|mimes:png,jpg,jpeg",
+         "image"             =>       "nullable|image|file|mimes:png,jpg,jpeg",
          "minimum_stock"     =>       "required",
          "category_id"       =>       "required",
          "supplier_id"       =>       "required",
